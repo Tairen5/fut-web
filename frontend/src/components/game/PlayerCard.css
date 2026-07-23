@@ -1,0 +1,138 @@
+/* Contenedor principal que envuelve la carta, el nombre inferior y la acción */
+.player-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: width 0.3s ease;
+}
+
+.player-card-wrapper.placeholder-wrapper {
+  width: 120px;
+}
+
+.player-card-wrapper.real-wrapper {
+  width: 175px; /* Aumentado a 175px */
+}
+
+/* La carta en sí */
+.player-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.48; /* Proporción estándar de una carta FUT */
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+  user-select: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Si es una carta real (imagen de carta completa), no lleva bordes ni fondos genéricos y se adapta a la imagen */
+.player-card.real-card {
+  background: transparent;
+  border: none;
+  aspect-ratio: auto; /* Evita espacios vacíos si la imagen tiene otro aspect ratio */
+}
+
+/* Si es un placeholder, mantenemos el estilo antiguo de carta para rellenar */
+.player-card.placeholder-card {
+  border: 1px solid;
+  padding: 0.45rem; /* Reducido de 0.75rem para que la foto suba y el div sea más pequeño */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Empujar contenido al inicio (arriba) */
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Contenedor de la imagen */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.real-card .card-image-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.placeholder-card .card-image-wrapper {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  height: 80%; /* Aumentado de 75% para que la foto sea más grande */
+  width: 100%; /* Aumentado de 90% para que ocupe todo el ancho */
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-image-placeholder {
+  font-size: 3.5rem;
+  opacity: 0.25;
+}
+
+/* Nombre para cartas placeholder (dentro de la carta) */
+.placeholder-name {
+  width: 100%;
+  padding: 0.25rem 0.1rem 0.1rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: auto;
+}
+
+/* Nombre para cartas reales (fuera de la carta, abajo) */
+.real-card-name {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 2px;
+  opacity: 0.95;
+  transition: color 0.2s ease;
+}
+
+.player-card-wrapper:hover .real-card-name {
+  color: #fbbf24; /* Color dorado al pasar el cursor */
+}
+
+/* Efectos al pasar el ratón (Hover) */
+.player-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Botón de acción */
+.card-action {
+  width: 100%;
+  padding: 0.45rem;
+  border-radius: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  transition: all 0.2s ease;
+}

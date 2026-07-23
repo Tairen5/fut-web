@@ -1,0 +1,110 @@
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 110px;
+  right: 0;
+  height: 64px;
+  background: #0a0c10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 99;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar-site-name {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-bar-currencies {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.currency-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.currency-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.currency-value {
+  font-family: var(--font-stats);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.currency-label {
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  color: rgba(232, 234, 240, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 0.15rem;
+}
+
+.top-bar-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.top-bar-club {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.club-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.club-est {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  color: rgba(232, 234, 240, 0.35);
+}
+
+.club-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.48rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.club-badge {
+  display: flex;
+  align-items: center;
+}
+
+.club-badge-svg {
+  width: 18px;
+  height: auto;
+}

@@ -1,0 +1,187 @@
+.collection-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.players-page.collection-page {
+  padding-top: 4rem;
+}
+
+/* === CLUB HEADER === */
+.club-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, rgba(201,167,82,0.06) 0%, rgba(201,167,82,0.02) 100%);
+  border: 1px solid rgba(201,167,82,0.15);
+  border-radius: 16px;
+}
+
+.club-badge {
+  flex-shrink: 0;
+}
+
+.club-badge-svg {
+  width: 80px;
+  height: 96px;
+  filter: drop-shadow(0 4px 20px rgba(201,167,82,0.2));
+}
+
+.club-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.club-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.club-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.club-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.club-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.club-stat-value {
+  font-family: var(--font-stats);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #c9a752;
+  line-height: 1;
+}
+
+.club-stat-label {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.club-stat-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(201,167,82,0.2);
+}
+
+.collection-item:hover .discard-btn {
+  opacity: 1;
+}
+
+.discard-btn {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(249, 112, 102, 0.9);
+  color: #fff;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  z-index: 5;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.discard-btn:hover {
+  background: #f97066;
+  transform: translateX(-50%) scale(1.05);
+}
+
+.discard-btn-inline {
+  background: rgba(249, 112, 102, 0.8);
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.discard-btn-inline:hover {
+  background: #f97066;
+}
+
+.collection-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* === UT-STYLE COLLECTION GRID === */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  padding: 0;
+}
+
+@media (max-width: 1200px) {
+  .collection-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .collection-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.collection-grid .collection-item {
+  display: flex;
+  justify-content: center;
+}
+
+.collection-grid .player-card-wrapper {
+  width: 100% !important;
+  max-width: 160px;
+}
+
+.collection-grid .player-card {
+  width: 100%;
+}

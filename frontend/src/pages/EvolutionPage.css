@@ -1,0 +1,193 @@
+.evolution-page {
+  position: relative;
+  min-height: 100vh;
+  background-color: #050b08;
+  color: #f8fafc;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  overflow-x: hidden;
+  padding: 24px;
+}
+
+.evo-aurora {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.evo-aurora-blob {
+  position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12;
+}
+.evo-aurora-1 { top: -10%; left: 5%; width: 400px; height: 400px; background: #10b981; }
+.evo-aurora-2 { bottom: 5%; right: 5%; width: 500px; height: 500px; background: #8b5cf6; }
+
+.evo-container {
+  position: relative; z-index: 1; max-width: 1600px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.evo-header {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+}
+.evo-title {
+  font-size: 28px; font-weight: 800; margin: 0;
+  background: linear-gradient(135deg, #10b981, #8b5cf6);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.evo-subtitle { margin: 4px 0 0; color: rgba(255,255,255,0.5); font-size: 14px; }
+
+.evo-gen-badge {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 8px 20px; min-width: 80px;
+}
+.evo-gen-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.4); }
+.evo-gen-num { font-size: 32px; font-weight: 800; color: #10b981; }
+
+.evo-main {
+  display: flex; gap: 20px;
+}
+.evo-canvas-col { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.evo-sidebar { width: 280px; display: flex; flex-direction: column; gap: 16px; flex-shrink: 0; }
+
+.evo-canvas-wrapper {
+  position: relative; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0a1a10;
+}
+.evo-canvas {
+  display: block; width: 100%; height: auto;
+}
+
+.evo-canvas-overlay {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+}
+.evo-play-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  background: rgba(16,185,129,0.15); border: 2px solid rgba(16,185,129,0.4);
+  border-radius: 16px; padding: 32px 48px; cursor: pointer;
+  color: #10b981; transition: all 0.2s;
+}
+.evo-play-btn:hover {
+  background: rgba(16,185,129,0.25); border-color: #10b981;
+  transform: scale(1.05);
+}
+.evo-play-btn span { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+
+.evo-scoreboard {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(15,23,42,0.85); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+  padding: 8px 24px; font-size: 14px;
+}
+.evo-team { font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+.evo-team.home { color: #38bdf8; }
+.evo-team.away { color: #ec4899; }
+.evo-score { font-size: 22px; font-weight: 800; min-width: 70px; text-align: center; }
+.evo-clock { color: rgba(255,255,255,0.5); font-variant-numeric: tabular-nums; }
+
+.evo-controls {
+  display: flex; gap: 8px;
+}
+.evo-ctrl-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 24px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+  font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s;
+}
+.evo-ctrl-btn.play {
+  background: rgba(16,185,129,0.15); color: #10b981; border-color: rgba(16,185,129,0.3);
+}
+.evo-ctrl-btn.play:hover { background: rgba(16,185,129,0.25); }
+.evo-ctrl-btn.stop {
+  background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3);
+}
+.evo-ctrl-btn.stop:hover { background: rgba(239,68,68,0.25); }
+
+.evo-history {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 16px;
+}
+.evo-history-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; font-weight: 600; margin-bottom: 12px; color: rgba(255,255,255,0.7);
+}
+.evo-history-legend { display: flex; gap: 12px; font-weight: 400; font-size: 11px; color: rgba(255,255,255,0.4); }
+.legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.legend-dot.best { background: #10b981; }
+.legend-dot.avg { background: rgba(255,255,255,0.2); }
+
+.evo-history-bars {
+  display: flex; gap: 3px; height: 80px; align-items: flex-end;
+}
+.evo-bar-col {
+  flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%;
+}
+.evo-bar-stack {
+  flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 1px;
+  position: relative;
+}
+.evo-bar {
+  width: 100%; border-radius: 2px 2px 0 0; transition: height 0.3s; min-height: 1px;
+}
+.evo-bar.best { background: #10b981; }
+.evo-bar.avg { background: rgba(255,255,255,0.15); }
+.evo-bar-label { font-size: 8px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+
+.evo-stats-card, .evo-formation-card, .evo-tactics-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 16px;
+}
+.evo-stats-card h3, .evo-formation-card h3, .evo-tactics-card h3 {
+  margin: 0 0 12px; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.evo-stat-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; font-size: 13px; color: rgba(255,255,255,0.6);
+}
+.evo-val { font-weight: 700; font-variant-numeric: tabular-nums; color: #f8fafc; }
+.evo-val.gold { color: #fbbf24; }
+.evo-val.green { color: #10b981; }
+.evo-val.yellow { color: #fbbf24; }
+.evo-val.red { color: #ef4444; }
+.evo-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 8px 0; }
+
+.evo-mini-pitch {
+  position: relative; width: 100%; aspect-ratio: 1.3 / 1;
+  background: #1b4332; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.evo-mini-field {
+  position: absolute; inset: 0;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.evo-mini-field::after {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 1px; background: rgba(255,255,255,0.2);
+}
+.evo-mini-player {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.evo-mini-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #38bdf8; border: 1.5px solid #fff;
+  box-shadow: 0 0 6px rgba(56,189,248,0.5);
+}
+.evo-mini-label {
+  font-size: 7px; font-weight: 700; color: rgba(255,255,255,0.8);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.evo-tactic-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; font-size: 12px;
+}
+.evo-tactic-name { color: rgba(255,255,255,0.5); }
+.evo-tactic-val { color: #10b981; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1100px) {
+  .evo-main { flex-direction: column; }
+  .evo-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; }
+  .evo-stats-card, .evo-formation-card, .evo-tactics-card { flex: 1; min-width: 200px; }
+}

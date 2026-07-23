@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* === FONT FACES === */
+@font-face {
+  font-family: 'Cruyff Sans';
+  src: url('/fonts/CruyffSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans';
+  src: url('/fonts/CruyffSans-Bold.ecd5078c.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans Extended';
+  src: url('/fonts/CruyffSansExtended-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans Mono';
+  src: url('/fonts/CruyffSansMono-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans Mono';
+  src: url('/fonts/CruyffSansMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans Mono';
+  src: url('/fonts/CruyffSansMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cruyff Sans Mono';
+  src: url('/fonts/CruyffSansMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EA FC Gamemodes';
+  src: url('/fonts/EAFC_Gamemodes_Font.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === DESIGN TOKENS === */
+:root {
+  /* Font families - EA FC Official */
+  --font-display:    'EA FC Gamemodes', 'Cruyff Sans Extended', sans-serif;
+  --font-heading:    'Cruyff Sans Extended', 'Cruyff Sans', sans-serif;
+  --font-ui:         'Cruyff Sans', 'Inter', sans-serif;
+  --font-body:       'Inter', sans-serif;
+  --font-stats:      'Cruyff Sans Mono', monospace;
+  --font-game:       'Cruyff Sans Extended', sans-serif;
+
+  /* Dark backgrounds */
+  --bg-base:       #07080d;
+  --bg-surface:    #0e1018;
+  --bg-card:       #13151f;
+  --bg-elevated:   #1a1d2e;
+
+  /* Brand colors */
+  --gold-primary:  #f0b429;
+  --gold-light:    #ffd166;
+  --gold-dark:     #b8860b;
+  --green-fut:     #00d4aa;
+  --blue-fut:      #4f8ef7;
+
+  /* Card rarities */
+  --card-gold:     linear-gradient(145deg, #1a1200 0%, #3d2e00 40%, #1a1200 100%);
+  --card-silver:   linear-gradient(145deg, #111318 0%, #2a2d3a 40%, #111318 100%);
+  --card-bronze:   linear-gradient(145deg, #150900 0%, #3d2000 40%, #150900 100%);
+
+  /* Borders */
+  --border-gold:   rgba(240, 180, 41, 0.4);
+  --border-subtle: rgba(255,255,255,0.06);
+
+  /* Glows */
+  --glow-gold:     0 0 30px rgba(240, 180, 41, 0.25);
+  --glow-green:    0 0 30px rgba(0, 212, 170, 0.2);
+}
+
+/* === BASE === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: #e8eaf0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79, 142, 247, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0, 212, 170, 0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(240,180,41,0.4); }
+
+/* === TYPOGRAPHY === */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.font-game { font-family: var(--font-game); }
+.font-display { font-family: var(--font-display); }
+.font-heading { font-family: var(--font-heading); }
+.font-ui { font-family: var(--font-ui); }
+.font-stats { font-family: var(--font-stats); }
+
+/* === GLASS CARD === */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* === BUTTON STYLES === */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+  color: #0a0800;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-gold:hover {
+  filter: brightness(1.15);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-gold);
+  color: var(--gold-primary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  background: rgba(240,180,41,0.08);
+  box-shadow: var(--glow-gold);
+}
+
+/* === BADGE === */
+.badge-overall {
+  font-family: var(--font-stats);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+/* === STAT BAR === */
+.stat-bar-fill {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary));
+  transition: width 0.6s ease;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(240,180,41,0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(240,180,41,0.2); }
+}
+
+.animate-fade-up { animation: fadeInUp 0.4s ease forwards; }
+
+/* === LAYOUT === */
+.app-main {
+  margin-left: 110px;
+  padding-top: 64px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
