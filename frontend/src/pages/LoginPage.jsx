@@ -7,7 +7,8 @@ export default function LoginPage() {
 
   const handleDiscordLogin = () => {
     // Redirige al backend que inicia el flujo de Discord OAuth2
-    window.location.href = 'http://localhost:5000/api/auth/discord';
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    window.location.href = `${apiUrl}/auth/discord`;
   };
 
   const errorMessages = {
