@@ -10,7 +10,7 @@ const NAV_ITEMS = [
       <img
         src="/assets/playersicon.png"
         alt="Players"
-        style={{ width: '33px', height: '33px', objectFit: 'contain', opacity: 0.8 }}
+        style={{ width: '22px', height: '22px', objectFit: 'contain', opacity: 0.8, transform: 'scale(1.5)' }}
       />
     ),
   },
