@@ -66,11 +66,11 @@
 }
 
 .sidebar-link.active {
-  color: #00f0ff;
+  color: #1e5ddb;
   width: 110px;
   margin-left: -9px;
   border-radius: 0;
-  background: rgba(0, 240, 255, 0.12);
+  background: rgba(30, 93, 219, 0.12);
 }
 
 .sidebar-link.active::after {
@@ -84,9 +84,9 @@
   top: 0;
   width: 4px;
   height: 100%;
-  background: #00f0ff;
+  background: #1e5ddb;
   border-radius: 0;
-  box-shadow: -2px 0 10px rgba(0, 240, 255, 0.5);
+  box-shadow: -2px 0 10px rgba(30, 93, 219, 0.5);
 }
 
 .sidebar-icon {
@@ -96,7 +96,7 @@
 }
 
 .sidebar-link.active .sidebar-icon {
-  color: #00f0ff;
+  color: #1e5ddb;
 }
 
 .sidebar-label {
@@ -129,7 +129,7 @@
   height: 42px;
   border-radius: 0;
   background: linear-gradient(135deg, #1a2332 0%, #0f1520 100%);
-  border: 2px solid rgba(0, 240, 255, 0.4);
+  border: 2px solid rgba(30, 93, 219, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +137,7 @@
 }
 
 .sidebar-user-avatar span {
-  color: #00f0ff;
+  color: #1e5ddb;
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -213,8 +213,8 @@
 }
 
 .sidebar-login-btn:hover {
-  color: #00f0ff;
-  background: rgba(0, 240, 255, 0.1);
+  color: #1e5ddb;
+  background: rgba(30, 93, 219, 0.1);
 }
 
 .sidebar-login-btn span {

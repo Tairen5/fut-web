@@ -38,7 +38,7 @@ export default function TopBar() {
           <div className="currency-item">
             <div className="currency-icon coins-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#00f0ff" stroke="#ffd166" strokeWidth="1"/>
+                <circle cx="12" cy="12" r="10" fill="#1e5ddb" stroke="#ffd166" strokeWidth="1"/>
                 <text x="12" y="16" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1a1200">C</text>
               </svg>
             </div>
@@ -77,8 +77,8 @@ export default function TopBar() {
               />
             ) : (
               <svg viewBox="0 0 40 48" width="36" height="42">
-                <path d="M20 4 L36 14 L36 30 Q36 42 20 46 Q4 42 4 30 L4 14 Z" fill="#1a1a2e" stroke="#00f0ff" strokeWidth="2.5"/>
-                <text x="20" y="30" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fill="#00f0ff" fontWeight="bold">UT</text>
+                <path d="M20 4 L36 14 L36 30 Q36 42 20 46 Q4 42 4 30 L4 14 Z" fill="#1a1a2e" stroke="#1e5ddb" strokeWidth="2.5"/>
+                <text x="20" y="30" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fill="#1e5ddb" fontWeight="bold">UT</text>
               </svg>
             )}
           </div>

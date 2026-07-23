@@ -83,12 +83,12 @@
   --bg-elevated:   #1a1d2e;
 
   /* Brand colors - Blue Lock Theme */
-  --bluelock-primary:  #00f0ff; /* Neon Cyan */
-  --bluelock-light:    #a0fcff;
-  --bluelock-dark:     #007a82;
+  --bluelock-primary:  #1e5ddb; /* Neon Cyan */
+  --bluelock-light:    #4982f5;
+  --bluelock-dark:     #0f2e6e;
   --bluelock-aura:     #ff003c; /* Intense Red */
   
-  --green-fut:     #00f0ff; /* We'll repurpose green for cyan too to keep unity */
+  --green-fut:     #1e5ddb; /* We'll repurpose green for cyan too to keep unity */
   --blue-fut:      #0f4c81;
 
   /* Card rarities - Tech styled */
@@ -97,14 +97,14 @@
   --card-bronze:   linear-gradient(145deg, #1f0b12 0%, #4a0018 40%, #1f0b12 100%);
 
   /* Borders */
-  --border-bluelock:   rgba(0, 240, 255, 0.4);
+  --border-bluelock:   rgba(30, 93, 219, 0.4);
   --border-aura:       rgba(255, 0, 60, 0.4);
   --border-subtle: rgba(255, 255, 255, 0.08);
 
   /* Glows */
-  --glow-bluelock: 0 0 30px rgba(0, 240, 255, 0.35);
+  --glow-bluelock: 0 0 30px rgba(30, 93, 219, 0.35);
   --glow-aura:     0 0 30px rgba(255, 0, 60, 0.3);
-  --glow-green:    0 0 30px rgba(0, 240, 255, 0.2);
+  --glow-green:    0 0 30px rgba(30, 93, 219, 0.2);
 }
 
 /* === BASE === */
@@ -117,8 +117,8 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   background-image:
-    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(30, 93, 219, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 93, 219, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
   background-position: center center;
   background-attachment: fixed;
@@ -128,7 +128,7 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-surface); }
 ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 0px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0, 240, 255, 0.4); }
+::-webkit-scrollbar-thumb:hover { background: rgba(30, 93, 219, 0.4); }
 
 /* === TYPOGRAPHY === */
 h1, h2, h3 {
@@ -186,7 +186,7 @@ h1, h2, h3 {
   transition: all 0.2s ease;
 }
 .btn-outline:hover {
-  background: rgba(0, 240, 255, 0.08);
+  background: rgba(30, 93, 219, 0.08);
   box-shadow: var(--glow-bluelock);
 }
 
@@ -216,8 +216,8 @@ h1, h2, h3 {
   100% { background-position:  200% center; }
 }
 @keyframes pulse-bluelock {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
-  50%       { box-shadow: 0 0 20px 4px rgba(0, 240, 255, 0.25); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 93, 219, 0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(30, 93, 219, 0.25); }
 }
 
 .animate-fade-up { animation: fadeInUp 0.4s ease forwards; }

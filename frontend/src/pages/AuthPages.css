@@ -51,7 +51,7 @@
 }
 
 .auth-input:focus {
-  border-color: rgba(0, 240, 255, 0.4);
+  border-color: rgba(30, 93, 219, 0.4);
 }
 
 .auth-input::placeholder {

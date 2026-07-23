@@ -14,8 +14,8 @@
   gap: 2rem;
   margin-bottom: 2rem;
   padding: 2rem 2.5rem;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.06) 0%, rgba(0, 240, 255, 0.02) 100%);
-  border: 1px solid rgba(0, 240, 255, 0.15);
+  background: linear-gradient(135deg, rgba(30, 93, 219, 0.06) 0%, rgba(30, 93, 219, 0.02) 100%);
+  border: 1px solid rgba(30, 93, 219, 0.15);
   border-radius: 0;
   clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
 }
@@ -27,7 +27,7 @@
 .club-badge-svg {
   width: 80px;
   height: 96px;
-  filter: drop-shadow(0 4px 20px rgba(0, 240, 255, 0.2));
+  filter: drop-shadow(0 4px 20px rgba(30, 93, 219, 0.2));
 }
 
 .club-info {
@@ -87,7 +87,7 @@
 .club-stat-divider {
   width: 1px;
   height: 28px;
-  background: rgba(0, 240, 255, 0.2);
+  background: rgba(30, 93, 219, 0.2);
 }
 
 .collection-item:hover .discard-btn {

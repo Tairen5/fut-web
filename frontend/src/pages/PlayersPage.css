@@ -17,7 +17,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(30, 93, 219, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 80% 60%, rgba(79, 142, 247, 0.05) 0%, transparent 50%),
     linear-gradient(180deg, rgba(20, 20, 20, 0.6) 0%, transparent 100%);
   pointer-events: none;
@@ -184,7 +184,7 @@
 }
 
 .search-bar-inline:focus-within {
-  border-color: rgba(0, 240, 255,0.4);
+  border-color: rgba(30, 93, 219,0.4);
 }
 
 .search-icon {
@@ -230,8 +230,8 @@
 }
 
 .view-btn.active {
-  background: rgba(0, 240, 255,0.15);
-  border-color: rgba(0, 240, 255,0.4);
+  background: rgba(30, 93, 219,0.15);
+  border-color: rgba(30, 93, 219,0.4);
   color: var(--bluelock-primary);
 }
 
@@ -307,7 +307,7 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(0, 240, 255,0.15);
+  border: 3px solid rgba(30, 93, 219,0.15);
   border-top-color: var(--bluelock-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -526,7 +526,7 @@
   cursor: default;
   margin-left: 0.1rem;
   background: linear-gradient(135deg, #1a1400, #0d0c00) !important;
-  border: 1.5px solid #00f0ff !important;
+  border: 1.5px solid #1e5ddb !important;
   color: #f0c040 !important;
   box-shadow: none !important;
   border-radius: 0;
@@ -584,14 +584,14 @@
 }
 
 .market-value {
-  color: #00f0ff;
+  color: #1e5ddb;
   font-weight: 800;
   font-size: 0.9rem;
 }
 
 .rat-badge-styled {
   background: linear-gradient(135deg, #1a2340, #0d1222);
-  border: 1px solid #00f0ff;
+  border: 1px solid #1e5ddb;
   color: #fff;
   font-family: var(--font-stats);
   font-weight: 600;
@@ -761,7 +761,7 @@
   flex-shrink: 0;
 }
 
-.cards-icon { background: rgba(0, 240, 255, 0.12); }
+.cards-icon { background: rgba(30, 93, 219, 0.12); }
 .ovr-icon { background: rgba(50, 213, 131, 0.12); }
 .promo-icon { background: rgba(168, 85, 247, 0.12); }
 .nation-icon { background: rgba(79, 142, 247, 0.12); }
@@ -825,8 +825,8 @@
 }
 
 .promo-tab.active {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: rgba(0, 240, 255, 0.3);
+  background: rgba(30, 93, 219, 0.12);
+  border-color: rgba(30, 93, 219, 0.3);
 }
 
 .promo-tab-label {
@@ -838,7 +838,7 @@
 }
 
 .promo-tab.active .promo-tab-label {
-  color: #00f0ff;
+  color: #1e5ddb;
 }
 
 .promo-tab-count {
@@ -877,7 +877,7 @@
 .promo-group-title {
   font-size: 1rem;
   font-weight: 800;
-  color: #00f0ff;
+  color: #1e5ddb;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1022,14 +1022,14 @@
 }
 
 .catalog-stat-pill {
-  background: rgba(0, 240, 255, 0.08);
-  border: 1px solid rgba(0, 240, 255, 0.2);
+  background: rgba(30, 93, 219, 0.08);
+  border: 1px solid rgba(30, 93, 219, 0.2);
   padding: 0.45rem 0.9rem;
   border-radius: 20px;
   font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 600;
-  color: #00f0ff;
+  color: #1e5ddb;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1080,9 +1080,9 @@
 }
 
 .filter-toggle-btn.active {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: rgba(0, 240, 255, 0.4);
-  color: #00f0ff;
+  background: rgba(30, 93, 219, 0.15);
+  border-color: rgba(30, 93, 219, 0.4);
+  color: #1e5ddb;
 }
 
 .sort-select {
@@ -1146,7 +1146,7 @@
 
 .filter-input:focus,
 .filter-select:focus {
-  border-color: rgba(0, 240, 255, 0.4);
+  border-color: rgba(30, 93, 219, 0.4);
 }
 
 .filter-select {
@@ -1216,9 +1216,9 @@
 }
 
 .position-tab.active {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: rgba(0, 240, 255, 0.4);
-  color: #00f0ff;
+  background: rgba(30, 93, 219, 0.15);
+  border-color: rgba(30, 93, 219, 0.4);
+  color: #1e5ddb;
 }
 
 /* === ACTIVE FILTERS === */
@@ -1243,9 +1243,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: rgba(0, 240, 255, 0.12);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  color: #00f0ff;
+  background: rgba(30, 93, 219, 0.12);
+  border: 1px solid rgba(30, 93, 219, 0.25);
+  color: #1e5ddb;
   padding: 0.3rem 0.6rem;
   border-radius: 0;
   font-family: var(--font-ui);
@@ -1258,7 +1258,7 @@
 }
 
 .filter-tag:hover {
-  background: rgba(0, 240, 255, 0.2);
+  background: rgba(30, 93, 219, 0.2);
 }
 
 /* === RESPONSIVE === */

@@ -63,14 +63,14 @@ export default function MatchHubPage() {
             <svg viewBox="0 0 200 240" className="hero-shield">
               <defs>
                 <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#007a82"/>
-                  <stop offset="40%" stopColor="#00f0ff"/>
-                  <stop offset="100%" stopColor="#007a82"/>
+                  <stop offset="0%" stopColor="#0f2e6e"/>
+                  <stop offset="40%" stopColor="#1e5ddb"/>
+                  <stop offset="100%" stopColor="#0f2e6e"/>
                 </linearGradient>
               </defs>
               <path d="M100 10 L185 50 L185 140 Q185 200 100 225 Q15 200 15 140 L15 50 Z" fill="url(#heroGrad)" stroke="#ffd166" strokeWidth="3"/>
               <path d="M100 25 L170 58 L170 138 Q170 190 100 210 Q30 190 30 138 L30 58 Z" fill="#0a0a0a"/>
-              <text x="100" y="120" textAnchor="middle" fontSize="50" fill="#00f0ff" fontWeight="bold" fontFamily="Arial">UT</text>
+              <text x="100" y="120" textAnchor="middle" fontSize="50" fill="#1e5ddb" fontWeight="bold" fontFamily="Arial">UT</text>
             </svg>
           </div>
         </div>

@@ -97,7 +97,7 @@
 .squad-loading-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(0, 240, 255, 0.15);
+  border: 3px solid rgba(30, 93, 219, 0.15);
   border-top-color: var(--bluelock-primary);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
@@ -164,7 +164,7 @@
 }
 
 .squad-tab:hover { background: rgba(255,255,255,0.05); color: #e8eaf0; }
-.squad-tab.active { background: rgba(0, 240, 255,0.1); border-color: var(--border-gold); color: var(--bluelock-primary); }
+.squad-tab.active { background: rgba(30, 93, 219,0.1); border-color: var(--border-gold); color: var(--bluelock-primary); }
 .squad-tab-x { font-size: 0.8rem; opacity: 0.3; }
 .squad-tab-x:hover { opacity: 1; color: #f97066; }
 .squad-tab-add {
@@ -338,7 +338,7 @@
   font-family: var(--font-stats);
   font-size: 0.5rem;
   font-weight: 700;
-  color: rgba(0, 240, 255,0.6);
+  color: rgba(30, 93, 219,0.6);
   background: rgba(0,0,0,0.5);
   padding: 1px 6px;
   border-radius: 3px;
@@ -527,12 +527,12 @@
   transition: all 0.1s;
 }
 
-.sidebar-dropdown-opt:hover { background: rgba(0, 240, 255,0.06); color: #e8eaf0; }
+.sidebar-dropdown-opt:hover { background: rgba(30, 93, 219,0.06); color: #e8eaf0; }
 .sidebar-dropdown-opt.active { color: var(--bluelock-primary); }
 
 .sidebar-set-active {
   width: 100%;
-  background: rgba(0, 240, 255,0.1);
+  background: rgba(30, 93, 219,0.1);
   border: 1px solid var(--border-gold);
   color: var(--bluelock-primary);
   padding: 0.5rem;
@@ -546,7 +546,7 @@
   transition: all 0.15s;
 }
 
-.sidebar-set-active:hover { background: rgba(0, 240, 255,0.15); border-color: rgba(0, 240, 255,0.35); }
+.sidebar-set-active:hover { background: rgba(30, 93, 219,0.15); border-color: rgba(30, 93, 219,0.35); }
 
 .sidebar-menu {
   display: flex;
@@ -607,7 +607,7 @@
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(0, 240, 255,0.08) 0%, rgba(0, 240, 255,0.02) 100%);
+  background: linear-gradient(135deg, rgba(30, 93, 219,0.08) 0%, rgba(30, 93, 219,0.02) 100%);
 }
 
 .squad-modal-header h3 {
