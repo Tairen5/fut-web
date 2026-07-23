@@ -7,10 +7,10 @@ const NAV_ITEMS = [
     to: '/players',
     label: 'Players',
     icon: (
-      <img 
-        src="/assets/playersicon.png" 
-        alt="Players" 
-        style={{ width: '32px', height: '32px', objectFit: 'contain', opacity: 0.8 }} 
+      <img
+        src="/assets/playersicon.png"
+        alt="Players"
+        style={{ width: '64px', height: '64px', objectFit: 'contain', opacity: 0.8 }}
       />
     ),
   },
@@ -60,11 +60,23 @@ const NAV_ITEMS = [
     ),
   },
   {
-    to: '/evolution',
-    label: 'Evolution',
+    to: '/sbc',
+    label: 'SBC',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+        <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path>
+      </svg>
+    ),
+  },
+  {
+    to: '/objectives',
+    label: 'Objectives',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="12" r="6"></circle>
+        <circle cx="12" cy="12" r="2"></circle>
       </svg>
     ),
   },
