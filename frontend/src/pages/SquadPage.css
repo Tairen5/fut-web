@@ -97,8 +97,8 @@
 .squad-loading-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(240, 180, 41, 0.15);
-  border-top-color: var(--gold-primary);
+  border: 3px solid rgba(0, 240, 255, 0.15);
+  border-top-color: var(--bluelock-primary);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -150,7 +150,7 @@
   border: 1px solid var(--border-subtle);
   color: rgba(232,234,240,0.4);
   padding: 0.35rem 0.8rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-family: var(--font-ui);
   font-size: 0.6rem;
   font-weight: 700;
@@ -164,7 +164,7 @@
 }
 
 .squad-tab:hover { background: rgba(255,255,255,0.05); color: #e8eaf0; }
-.squad-tab.active { background: rgba(240,180,41,0.1); border-color: var(--border-gold); color: var(--gold-primary); }
+.squad-tab.active { background: rgba(0, 240, 255,0.1); border-color: var(--border-gold); color: var(--bluelock-primary); }
 .squad-tab-x { font-size: 0.8rem; opacity: 0.3; }
 .squad-tab-x:hover { opacity: 1; color: #f97066; }
 .squad-tab-add {
@@ -175,12 +175,12 @@
   justify-content: center;
   background: rgba(255,255,255,0.03);
   border: 1px dashed rgba(255,255,255,0.1);
-  border-radius: 4px;
+  border-radius: 0;
   color: rgba(232,234,240,0.3);
   font-size: 0.9rem;
   cursor: pointer;
 }
-.squad-tab-add:hover { border-color: var(--border-gold); color: var(--gold-primary); }
+.squad-tab-add:hover { border-color: var(--border-gold); color: var(--bluelock-primary); }
 
 /* Info Inline */
 .squad-info-inline {
@@ -204,7 +204,7 @@
 }
 
 .star { color: rgba(255,255,255,0.12); font-size: 0.6rem; }
-.star.on { color: var(--gold-primary); }
+.star.on { color: var(--bluelock-primary); }
 .chem-green { color: var(--green-fut); }
 
 /* Pitch */
@@ -281,11 +281,11 @@
 .squad-slot[draggable="true"] { cursor: grab; }
 .squad-slot[draggable="true"]:active { cursor: grabbing; }
 .squad-slot.dragging { opacity: 0.4; }
-.squad-slot.drag-over { outline: 2px solid var(--gold-primary); outline-offset: 4px; }
+.squad-slot.drag-over { outline: 2px solid var(--bluelock-primary); outline-offset: 4px; }
 .sub-card[draggable="true"] { cursor: grab; }
 .sub-card[draggable="true"]:active { cursor: grabbing; }
 .sub-card.dragging { opacity: 0.4; }
-.sub-card.drag-over { outline: 2px solid var(--gold-primary); outline-offset: 4px; }
+.sub-card.drag-over { outline: 2px solid var(--bluelock-primary); outline-offset: 4px; }
 
 .slot-card {
   width: 110px;
@@ -338,7 +338,7 @@
   font-family: var(--font-stats);
   font-size: 0.5rem;
   font-weight: 700;
-  color: rgba(240,180,41,0.6);
+  color: rgba(0, 240, 255,0.6);
   background: rgba(0,0,0,0.5);
   padding: 1px 6px;
   border-radius: 3px;
@@ -379,7 +379,7 @@
 .squad-subs-toggle:hover {
   background: var(--bg-surface);
   border-color: var(--border-gold);
-  color: var(--gold-primary);
+  color: var(--bluelock-primary);
 }
 
 /* Subs Panel */
@@ -527,14 +527,14 @@
   transition: all 0.1s;
 }
 
-.sidebar-dropdown-opt:hover { background: rgba(240,180,41,0.06); color: #e8eaf0; }
-.sidebar-dropdown-opt.active { color: var(--gold-primary); }
+.sidebar-dropdown-opt:hover { background: rgba(0, 240, 255,0.06); color: #e8eaf0; }
+.sidebar-dropdown-opt.active { color: var(--bluelock-primary); }
 
 .sidebar-set-active {
   width: 100%;
-  background: rgba(240,180,41,0.1);
+  background: rgba(0, 240, 255,0.1);
   border: 1px solid var(--border-gold);
-  color: var(--gold-primary);
+  color: var(--bluelock-primary);
   padding: 0.5rem;
   border-radius: 0;
   font-family: var(--font-ui);
@@ -546,7 +546,7 @@
   transition: all 0.15s;
 }
 
-.sidebar-set-active:hover { background: rgba(240,180,41,0.15); border-color: rgba(240,180,41,0.35); }
+.sidebar-set-active:hover { background: rgba(0, 240, 255,0.15); border-color: rgba(0, 240, 255,0.35); }
 
 .sidebar-menu {
   display: flex;
@@ -591,7 +591,7 @@
 .squad-modal {
   background: var(--bg-base);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  border-radius: 0;
   width: 98%;
   max-width: 1600px;
   max-height: 92vh;
@@ -607,7 +607,7 @@
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(240,180,41,0.08) 0%, rgba(240,180,41,0.02) 100%);
+  background: linear-gradient(135deg, rgba(0, 240, 255,0.08) 0%, rgba(0, 240, 255,0.02) 100%);
 }
 
 .squad-modal-header h3 {
@@ -627,7 +627,7 @@
   font-size: 1rem;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.15s;
   display: flex;
@@ -720,7 +720,7 @@
   font-family: var(--font-stats);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--gold-primary);
+  color: var(--bluelock-primary);
 }
 
 .compare-vs {
@@ -779,7 +779,7 @@
 }
 
 .compare-ovr .compare-stat-label {
-  color: var(--gold-primary);
+  color: var(--bluelock-primary);
 }
 
 .squad-modal-remove {
@@ -788,7 +788,7 @@
   background: rgba(249,112,102,0.1);
   border: 1px solid rgba(249,112,102,0.25);
   color: #f97066;
-  border-radius: 4px;
+  border-radius: 0;
   font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 700;

@@ -8,8 +8,8 @@
 
 .auth-card {
   background: rgba(20,20,20,0.8);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: 1px solid var(--border-bluelock);
+  border-radius: 0;
   padding: 2.5rem;
   width: 100%;
   max-width: 380px;
@@ -41,7 +41,7 @@
 .auth-input {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.75rem 1rem;
   color: #e8eaf0;
   font-family: var(--font-body);
@@ -51,7 +51,7 @@
 }
 
 .auth-input:focus {
-  border-color: rgba(240,180,41,0.4);
+  border-color: rgba(0, 240, 255, 0.4);
 }
 
 .auth-input::placeholder {
@@ -65,19 +65,20 @@
 }
 
 .auth-btn {
-  background: linear-gradient(135deg, var(--gold-primary), #c9a752);
+  background: linear-gradient(135deg, var(--bluelock-dark), var(--bluelock-primary));
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.75rem;
   color: #000;
   font-family: var(--font-ui);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
   margin-top: 0.5rem;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
 .auth-btn:hover {
@@ -100,11 +101,12 @@
 }
 
 .auth-switch a {
-  color: var(--gold-primary);
+  color: var(--bluelock-primary);
   text-decoration: none;
   font-weight: 700;
 }
 
 .auth-switch a:hover {
   text-decoration: underline;
+  color: var(--bluelock-light);
 }

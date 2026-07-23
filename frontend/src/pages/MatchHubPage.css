@@ -37,7 +37,7 @@
 .hub-hero {
   width: 280px;
   min-width: 280px;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -91,7 +91,7 @@
 .mode-card {
   background: linear-gradient(180deg, #181c22 0%, #0a0c10 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  border-radius: 0;
   padding: 0;
   cursor: pointer;
   transition: all 0.2s;
@@ -233,7 +233,7 @@
   font-size: 9px;
   font-weight: 700;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .mode-rivals {
@@ -267,7 +267,7 @@
 .info-card {
   background: linear-gradient(180deg, #141820 0%, #0a0c10 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  border-radius: 0;
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -429,7 +429,7 @@
 .tots-card-img {
   background: linear-gradient(180deg, #1a3a5a 0%, #0a1a2a 100%);
   border: 1px solid rgba(212, 168, 67, 0.3);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 8px 4px;
   display: flex;
   flex-direction: column;
@@ -462,7 +462,7 @@
 .difficulty-modal {
   background: #111;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border-radius: 0;
   padding: 32px;
   text-align: center;
   min-width: 280px;
@@ -484,7 +484,7 @@
 .diff-btn {
   padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -497,7 +497,7 @@
 }
 
 .diff-easy { background: #2ea86a; }
-.diff-medium { background: #f0b429; }
+.diff-medium { background: #00f0ff; }
 .diff-hard { background: #e63946; }
 
 .diff-cancel {
@@ -505,7 +505,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #888;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   font-size: 12px;
 }

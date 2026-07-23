@@ -53,7 +53,7 @@
   gap: 0.25rem;
   width: 92px;
   padding: 0.7rem 0;
-  border-radius: 10px;
+  border-radius: 0;
   text-decoration: none;
   color: rgba(232, 234, 240, 0.4);
   transition: all 0.2s ease;
@@ -66,11 +66,11 @@
 }
 
 .sidebar-link.active {
-  color: #c9a752;
+  color: #00f0ff;
   width: 110px;
   margin-left: -9px;
   border-radius: 0;
-  background: rgba(201, 167, 82, 0.12);
+  background: rgba(0, 240, 255, 0.12);
 }
 
 .sidebar-link.active::after {
@@ -81,12 +81,12 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 60%;
-  background: #c9a752;
-  border-radius: 3px 0 0 3px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #00f0ff;
+  border-radius: 0;
+  box-shadow: -2px 0 10px rgba(0, 240, 255, 0.5);
 }
 
 .sidebar-icon {
@@ -96,7 +96,7 @@
 }
 
 .sidebar-link.active .sidebar-icon {
-  color: #c9a752;
+  color: #00f0ff;
 }
 
 .sidebar-label {
@@ -127,16 +127,17 @@
 .sidebar-user-avatar {
   width: 42px;
   height: 42px;
-  border-radius: 50%;
+  border-radius: 0;
   background: linear-gradient(135deg, #1a2332 0%, #0f1520 100%);
-  border: 2px solid rgba(201, 167, 82, 0.4);
+  border: 2px solid rgba(0, 240, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
 .sidebar-user-avatar span {
-  color: #c9a752;
+  color: #00f0ff;
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -185,7 +186,7 @@
   color: rgba(232, 234, 240, 0.3);
   cursor: pointer;
   padding: 0.3rem;
-  border-radius: 6px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,7 +205,7 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.6rem;
-  border-radius: 10px;
+  border-radius: 0;
   text-decoration: none;
   color: rgba(232, 234, 240, 0.4);
   transition: all 0.2s;
@@ -212,8 +213,8 @@
 }
 
 .sidebar-login-btn:hover {
-  color: #c9a752;
-  background: rgba(201, 167, 82, 0.1);
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.1);
 }
 
 .sidebar-login-btn span {

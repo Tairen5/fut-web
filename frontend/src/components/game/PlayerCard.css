@@ -20,7 +20,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1.48; /* Proporción estándar de una carta FUT */
-  border-radius: 14px;
+  border-radius: 0;
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
   user-select: none;
@@ -61,12 +61,12 @@
 }
 
 .real-card .card-image-wrapper {
-  border-radius: 14px;
+  border-radius: 0;
   overflow: hidden;
 }
 
 .placeholder-card .card-image-wrapper {
-  border-radius: 10px;
+  border-radius: 0;
   background: rgba(0, 0, 0, 0.25);
   height: 80%; /* Aumentado de 75% para que la foto sea más grande */
   width: 100%; /* Aumentado de 90% para que ocupe todo el ancho */
@@ -127,7 +127,7 @@
 .card-action {
   width: 100%;
   padding: 0.45rem;
-  border-radius: 6px;
+  border-radius: 0;
   font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 700;
