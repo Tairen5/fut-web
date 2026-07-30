@@ -108,12 +108,16 @@ export const activateSquad = async (squadId, userId) => {
  * Actualiza un squad (formación, titulares, banquillo, tácticas)
  */
 export const updateSquad = async (squadId, userId, data) => {
-  const { name, formation, startingEleven, bench, tactics } = data;
+  let { name, formation, startingEleven, bench, tactics } = data;
 
   if (startingEleven && startingEleven.length > 0) {
+    // Extraer solo los IDs (si vienen poblados como objetos desde el frontend, sacamos el _id)
     const playerIds = startingEleven
       .filter(slot => slot.user_player_id)
-      .map(slot => slot.user_player_id);
+      .map(slot => {
+        const id = slot.user_player_id;
+        return id._id ? id._id.toString() : id.toString();
+      });
 
     const validPlayers = await UserPlayer.find({
       _id: { $in: playerIds },
@@ -127,13 +131,21 @@ export const updateSquad = async (squadId, userId, data) => {
     if (startingEleven.length > 11) {
       throw new Error('La plantilla no puede tener más de 11 titulares.');
     }
+    
+    // Limpiar los objetos poblados antes de guardar
+    startingEleven = startingEleven.map(slot => ({
+      ...slot,
+      user_player_id: slot.user_player_id._id ? slot.user_player_id._id.toString() : slot.user_player_id.toString()
+    }));
   }
 
   const updateFields = {};
   if (name !== undefined) updateFields.name = name;
   if (formation !== undefined) updateFields.formation = formation;
   if (startingEleven !== undefined) updateFields.startingEleven = startingEleven;
-  if (bench !== undefined) updateFields.bench = bench;
+  if (bench !== undefined) {
+    updateFields.bench = bench.map(id => id._id ? id._id.toString() : id.toString());
+  }
   if (tactics !== undefined) updateFields.tactics = tactics;
 
   const updatedSquad = await Squad.findOneAndUpdate(
