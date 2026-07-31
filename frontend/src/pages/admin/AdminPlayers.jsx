@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getRarityStyle } from '../../utils/constants';
 import api from '../../services/api';
 import ImagePicker from '../../components/admin/ImagePicker';
 import AdminLayout from '../../components/admin/AdminLayout';
@@ -24,12 +23,6 @@ const emptyPlayer = {
 };
 
 function CardPreview({ form }) {
-  const rarity = getRarityStyle(form.overall);
-  const hasImage = form.image && (
-    form.image.startsWith('http') || form.image.startsWith('data:') || form.image.startsWith('/')
-      ? true
-      : true
-  );
   const imgSrc = form.image
     ? (form.image.startsWith('http') || form.image.startsWith('data:') || form.image.startsWith('/')
         ? form.image
@@ -38,45 +31,16 @@ function CardPreview({ form }) {
 
   return (
     <div className="card-preview">
-      <div className="card-preview-frame" style={{ background: rarity.bg, boxShadow: rarity.glow, borderColor: rarity.border }}>
-        <div className="card-preview-ovr">{form.overall || '—'}</div>
-        <div className="card-preview-pos">{form.position || '—'}</div>
-        <div className="card-preview-image">
-          {imgSrc ? (
-            <img src={imgSrc} alt={form.name} onError={(e) => { e.target.style.display = 'none'; }} />
-          ) : (
-            <div className="card-preview-placeholder">👤</div>
-          )}
-        </div>
-        <div className="card-preview-name">{form.shortName || form.name || 'Nombre'}</div>
-        <div className="card-preview-stats">
-          {['pac', 'sho', 'pas', 'dri', 'def', 'phy'].map((k) => (
-            <div key={k} className="card-preview-stat">
-              <span className="card-preview-stat-label">{k.toUpperCase()}</span>
-              <span className="card-preview-stat-value">{form.stats[k]}</span>
-            </div>
-          ))}
-        </div>
-        <div className="card-preview-badges">
-          {form.nation?.image && (
-            <img
-              src={form.nation.image.startsWith('http') || form.nation.image.startsWith('/') ? form.nation.image : `/nations/${form.nation.image}`}
-              alt="" className="card-preview-badge"
-            />
-          )}
-          {form.club?.image && (
-            <img
-              src={form.club.image.startsWith('http') || form.club.image.startsWith('/') ? form.club.image : `/clubs/${form.club.image}`}
-              alt="" className="card-preview-badge"
-            />
-          )}
-          {form.league?.image && (
-            <img
-              src={form.league.image.startsWith('http') || form.league.image.startsWith('/') ? form.league.image : `/leagues/${form.league.image}`}
-              alt="" className="card-preview-badge"
-            />
-          )}
-        </div>
+      {imgSrc ? (
+        <img
+          src={imgSrc}
+          alt={form.name || 'Player Card'}
+          className="card-preview-img"
+          onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+        />
+      ) : null}
+      <div className="card-preview-placeholder" style={{ display: imgSrc ? 'none' : 'flex' }}>
+        <span>Sin imagen</span>
       </div>
     </div>
   );

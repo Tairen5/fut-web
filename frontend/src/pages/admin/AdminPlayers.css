@@ -15,7 +15,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   width: 95vw;
-  max-width: 1100px;
+  max-width: 1300px;
   max-height: 90vh;
   overflow: hidden;
 }
@@ -44,7 +44,7 @@
 
 /* === LEFT: Card Preview === */
 .card-preview {
-  flex: 0 0 340px;
+  flex: 0 0 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,111 +53,25 @@
   border-right: 1px solid var(--border-subtle);
 }
 
-.card-preview-frame {
-  width: 240px;
-  border: 2px solid;
-  border-radius: 0;
-  padding: 1.2rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-preview-ovr {
-  font-family: var(--font-stats);
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.card-preview-pos {
-  font-family: var(--font-ui);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.6rem;
-}
-
-.card-preview-image {
+.card-preview-img {
   width: 100%;
-  aspect-ratio: 1 / 1.2;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.6rem;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.card-preview-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
 }
 
 .card-preview-placeholder {
-  font-size: 4rem;
-  opacity: 0.2;
-}
-
-.card-preview-name {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 800;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-  margin-bottom: 0.8rem;
-}
-
-.card-preview-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.3rem;
   width: 100%;
-}
-
-.card-preview-stat {
+  max-width: 380px;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-subtle);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
-}
-
-.card-preview-stat-label {
+  justify-content: center;
   font-family: var(--font-ui);
-  font-size: 0.55rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.card-preview-stat-value {
-  font-family: var(--font-stats);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.card-preview-badges {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-
-.card-preview-badge {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  border-radius: 50%;
+  font-size: 0.85rem;
+  color: rgba(232, 234, 240, 0.2);
 }
 
 /* === RIGHT: Form === */
