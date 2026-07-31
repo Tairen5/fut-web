@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getRarityStyle } from '../../utils/constants';
 import api from '../../services/api';
+import ImagePicker from '../../components/admin/ImagePicker';
 import AdminLayout from '../../components/admin/AdminLayout';
 import '../../components/admin/admin.css';
 import './AdminPlayers.css';
@@ -249,6 +250,12 @@ export default function AdminPlayers() {
                         <label className="form-label">IMAGE FILENAME</label>
                         <input className="form-input" value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="ej: messi.png" />
                       </div>
+                      <ImagePicker
+                        folder="player-cards"
+                        value={form.image}
+                        onChange={(val) => setForm({ ...form, image: val })}
+                        label="O ELEGIR DE LA CARPETA"
+                      />
                     </>
                   )}
 
@@ -259,26 +266,32 @@ export default function AdminPlayers() {
                         <label className="form-label">CLUB NAME</label>
                         <input className="form-input" value={form.club?.name || ''} onChange={(e) => setClub('name', e.target.value)} />
                       </div>
-                      <div className="form-group">
-                        <label className="form-label">CLUB IMAGE</label>
-                        <input className="form-input" value={form.club?.image || ''} onChange={(e) => setClub('image', e.target.value)} placeholder="ej: inter-miami.png" />
-                      </div>
-                      <div className="form-group">
+                      <ImagePicker
+                        folder="clubs"
+                        value={form.club?.image || ''}
+                        onChange={(val) => setClub('image', val)}
+                        label="CLUB IMAGE"
+                      />
+                      <div className="form-group" style={{ marginTop: '1rem' }}>
                         <label className="form-label">LEAGUE NAME</label>
                         <input className="form-input" value={form.league?.name || ''} onChange={(e) => setLeague('name', e.target.value)} />
                       </div>
-                      <div className="form-group">
-                        <label className="form-label">LEAGUE IMAGE</label>
-                        <input className="form-input" value={form.league?.image || ''} onChange={(e) => setLeague('image', e.target.value)} placeholder="ej: mls.png" />
-                      </div>
-                      <div className="form-group">
+                      <ImagePicker
+                        folder="leagues"
+                        value={form.league?.image || ''}
+                        onChange={(val) => setLeague('image', val)}
+                        label="LEAGUE IMAGE"
+                      />
+                      <div className="form-group" style={{ marginTop: '1rem' }}>
                         <label className="form-label">NATION NAME</label>
                         <input className="form-input" value={form.nation?.name || ''} onChange={(e) => setNation('name', e.target.value)} />
                       </div>
-                      <div className="form-group">
-                        <label className="form-label">NATION IMAGE</label>
-                        <input className="form-input" value={form.nation?.image || ''} onChange={(e) => setNation('image', e.target.value)} placeholder="ej: argentina.png" />
-                      </div>
+                      <ImagePicker
+                        folder="nations"
+                        value={form.nation?.image || ''}
+                        onChange={(val) => setNation('image', val)}
+                        label="NATION IMAGE"
+                      />
                     </>
                   )}
 
