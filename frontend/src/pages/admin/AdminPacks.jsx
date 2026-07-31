@@ -8,6 +8,12 @@ const emptyPack = {
   possibleCards: [],
 };
 
+const getImageUrl = (img, folder) => {
+  if (!img) return `/${folder}/default.png`;
+  if (img.startsWith('http') || img.startsWith('data:') || img.startsWith('/')) return img;
+  return `/${folder}/${img}`;
+};
+
 export default function AdminPacks() {
   const [packs, setPacks] = useState([]);
   const [players, setPlayers] = useState([]);
@@ -96,7 +102,7 @@ export default function AdminPacks() {
                 <tr key={p._id}>
                   <td>
                     {p.image ? (
-                      <img src={p.image} alt={p.name} style={{ width: 40, height: 40, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                      <img src={getImageUrl(p.image, 'packs')} alt={p.name} style={{ width: 40, height: 40, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
                     ) : (
                       <div style={{ width: 40, height: 40, background: 'var(--bg-surface)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: 'rgba(232,234,240,0.3)' }}>🎁</div>
                     )}
