@@ -2,7 +2,7 @@ import { readdirSync, writeFileSync } from 'fs';
 import { join, extname } from 'path';
 
 const PUBLIC_DIR = join(process.cwd(), '..', 'frontend', 'public');
-const FOLDERS = ['player-cards', 'clubs', 'nations', 'leagues', 'playstyles'];
+const FOLDERS = ['player-cards', 'clubs', 'nations', 'leagues', 'playstyles', 'packs'];
 const ALLOWED = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'];
 
 const manifest = {};

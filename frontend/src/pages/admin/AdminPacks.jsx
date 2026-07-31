@@ -4,6 +4,7 @@ import ImagePicker from '../../components/admin/ImagePicker';
 import AdminLayout from '../../components/admin/AdminLayout';
 import '../../components/admin/admin.css';
 import './AdminPlayers.css';
+import './AdminPacks.css';
 
 const getImageUrl = (img, folder) => {
   if (!img) return `/${folder}/default.png`;
@@ -45,6 +46,14 @@ function PackPreview({ form }) {
   );
 }
 
+function getWeightForOvr(ovr) {
+  if (ovr >= 90) return 1;
+  if (ovr >= 85) return 3;
+  if (ovr >= 80) return 6;
+  if (ovr >= 75) return 10;
+  return 15;
+}
+
 export default function AdminPacks() {
   const [packs, setPacks] = useState([]);
   const [players, setPlayers] = useState([]);
@@ -53,6 +62,7 @@ export default function AdminPacks() {
   const [form, setForm] = useState(emptyPack);
   const [editId, setEditId] = useState(null);
   const [tab, setTab] = useState('info');
+  const [playerSearch, setPlayerSearch] = useState('');
 
   const fetchData = () => {
     setLoading(true);
@@ -67,8 +77,8 @@ export default function AdminPacks() {
 
   useEffect(() => { fetchData(); }, []);
 
-  const openCreate = () => { setForm({ ...emptyPack, possibleCards: [] }); setEditId(null); setModal('create'); setTab('info'); };
-  const openEdit = (p) => { setForm({ ...p }); setEditId(p._id); setModal('edit'); setTab('info'); };
+  const openCreate = () => { setForm({ ...emptyPack, possibleCards: [] }); setEditId(null); setModal('create'); setTab('info'); setPlayerSearch(''); };
+  const openEdit = (p) => { setForm({ ...p }); setEditId(p._id); setModal('edit'); setTab('info'); setPlayerSearch(''); };
 
   const handleSave = async () => {
     try {
@@ -111,6 +121,30 @@ export default function AdminPacks() {
       possibleCards: f.possibleCards.filter((_, i) => i !== index),
     }));
   };
+
+  const autoWeight = () => {
+    setForm((f) => ({
+      ...f,
+      possibleCards: f.possibleCards.map((pc) => {
+        const player = players.find((p) => p._id === pc.player_id);
+        if (!player) return pc;
+        return { ...pc, weight: getWeightForOvr(player.overall) };
+      }),
+    }));
+  };
+
+  const addAllPlayers = () => {
+    const existingIds = new Set(form.possibleCards.map((pc) => pc.player_id));
+    const newCards = players
+      .filter((p) => !existingIds.has(p._id))
+      .map((p) => ({ player_id: p._id, weight: getWeightForOvr(p.overall) }));
+    setForm((f) => ({ ...f, possibleCards: [...f.possibleCards, ...newCards] }));
+  };
+
+  const availablePlayers = players.filter((p) =>
+    p.name.toLowerCase().includes(playerSearch.toLowerCase()) ||
+    p.position.toLowerCase().includes(playerSearch.toLowerCase())
+  );
 
   return (
     <AdminLayout>
@@ -161,7 +195,7 @@ export default function AdminPacks() {
 
       {modal && (
         <div className="player-modal-overlay" onClick={() => setModal(null)}>
-          <div className="player-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="player-modal pack-modal" onClick={(e) => e.stopPropagation()}>
             <button className="player-modal-close" onClick={() => setModal(null)}>✕</button>
 
             <div className="player-modal-layout">
@@ -171,7 +205,7 @@ export default function AdminPacks() {
                 <div className="player-modal-tabs">
                   {[
                     { id: 'info', label: 'Info' },
-                    { id: 'players', label: 'Players' },
+                    { id: 'players', label: `Players (${form.possibleCards.length})` },
                   ].map((t) => (
                     <button
                       key={t.id}
@@ -230,31 +264,63 @@ export default function AdminPacks() {
 
                   {tab === 'players' && (
                     <>
-                      <h3 className="form-section-title">Possible Cards</h3>
-                      <div style={{ marginBottom: '0.8rem' }}>
-                        <button className="admin-btn admin-btn-primary admin-btn-small" onClick={addPossibleCard}>+ Añadir jugador</button>
-                      </div>
-                      {form.possibleCards.map((pc, i) => (
-                        <div key={i} className="form-row-2" style={{ marginBottom: '0.5rem', alignItems: 'center' }}>
-                          <select className="form-select" value={pc.player_id} onChange={(e) => updatePossibleCard(i, 'player_id', e.target.value)}>
-                            <option value="">Seleccionar jugador...</option>
-                            {players.map((p) => (
-                              <option key={p._id} value={p._id}>{p.name} ({p.overall} OVR)</option>
-                            ))}
-                          </select>
-                          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-                            <div className="form-group" style={{ margin: 0, flex: 1 }}>
-                              <label className="form-label">WEIGHT</label>
-                              <input className="form-input" type="number" min="1" value={pc.weight}
-                                onChange={(e) => updatePossibleCard(i, 'weight', e.target.value)} />
-                            </div>
-                            <button className="admin-btn admin-btn-danger admin-btn-small" style={{ marginTop: '1rem' }} onClick={() => removePossibleCard(i)}>✕</button>
-                          </div>
+                      <div className="pack-players-header">
+                        <h3 className="form-section-title" style={{ margin: 0 }}>Possible Cards</h3>
+                        <div className="pack-players-actions">
+                          <button className="admin-btn admin-btn-outline admin-btn-small" onClick={autoWeight}>Auto Weight by OVR</button>
+                          <button className="admin-btn admin-btn-outline admin-btn-small" onClick={addAllPlayers}>Add All Players</button>
+                          <button className="admin-btn admin-btn-primary admin-btn-small" onClick={addPossibleCard}>+ Add</button>
                         </div>
-                      ))}
-                      {form.possibleCards.length === 0 && (
-                        <div className="admin-empty">No hay jugadores añadidos</div>
-                      )}
+                      </div>
+
+                      <input
+                        className="form-input"
+                        placeholder="Buscar jugador por nombre o posición..."
+                        value={playerSearch}
+                        onChange={(e) => setPlayerSearch(e.target.value)}
+                        style={{ marginBottom: '0.8rem' }}
+                      />
+
+                      <div className="pack-players-list">
+                        {form.possibleCards.map((pc, i) => {
+                          const player = players.find((p) => p._id === pc.player_id);
+                          return (
+                            <div key={i} className="pack-player-row">
+                              <div className="pack-player-row-left">
+                                {player?.image ? (
+                                  <img
+                                    src={getImageUrl(player.image, 'player-cards')}
+                                    alt={player.name}
+                                    className="pack-player-thumb"
+                                  />
+                                ) : (
+                                  <div className="pack-player-thumb pack-player-thumb-empty">?</div>
+                                )}
+                                <select className="form-select pack-player-select" value={pc.player_id} onChange={(e) => updatePossibleCard(i, 'player_id', e.target.value)}>
+                                  <option value="">Seleccionar jugador...</option>
+                                  {availablePlayers.map((p) => (
+                                    <option key={p._id} value={p._id}>{p.name} ({p.overall} OVR · {p.position})</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div className="pack-player-row-right">
+                                <div className="pack-weight-input">
+                                  <label className="form-label">W</label>
+                                  <input className="form-input" type="number" min="1" value={pc.weight}
+                                    onChange={(e) => updatePossibleCard(i, 'weight', e.target.value)} />
+                                </div>
+                                {player && (
+                                  <span className="pack-player-ovr" title="OVR">{player.overall}</span>
+                                )}
+                                <button className="admin-btn admin-btn-danger admin-btn-small" onClick={() => removePossibleCard(i)}>✕</button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                        {form.possibleCards.length === 0 && (
+                          <div className="admin-empty">No hay jugadores añadidos</div>
+                        )}
+                      </div>
                     </>
                   )}
                 </div>
