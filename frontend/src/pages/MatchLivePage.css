@@ -3,7 +3,7 @@
 .match-live-page {
   position: relative;
   min-height: 100vh;
-  background-color: #050b08;
+  background-color: var(--bg-base);
   color: #f8fafc;
   font-family: 'Outfit', 'Inter', sans-serif;
   overflow: hidden;
@@ -38,7 +38,7 @@
   left: 10%;
   width: 400px;
   height: 400px;
-  background: #0284c7; /* Sky */
+  background: var(--bluelock-primary);
 }
 
 .aurora-blob-2 {
@@ -46,7 +46,7 @@
   right: 10%;
   width: 500px;
   height: 500px;
-  background: #db2777; /* Pink */
+  background: var(--bluelock-aura);
 }
 
 /* Container */
@@ -104,13 +104,13 @@
 }
 
 .home-indicator {
-  background-color: #0284c7;
-  color: #0284c7;
+  background-color: var(--bluelock-primary);
+  color: var(--bluelock-primary);
 }
 
 .away-indicator {
-  background-color: #db2777;
-  color: #db2777;
+  background-color: var(--bluelock-aura);
+  color: var(--bluelock-aura);
 }
 
 .scoreboard-score-clock {
@@ -226,7 +226,7 @@
 }
 
 .state-modal {
-  background: rgba(30, 41, 59, 0.9);
+  background: rgba(30, 41, 59, 0.9); /* fallback */
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 32px;
   border-radius: 20px;
@@ -287,7 +287,7 @@
 .goal-banner-content p {
   font-size: 22px;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--bg-elevated);
   margin: 8px 0 0 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -304,7 +304,7 @@
 
 /* Controls Panel */
 .controls-panel {
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(15, 23, 42, 0.5); /* slate fallback */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -396,7 +396,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(15, 23, 42, 0.45); /* slate fallback */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -575,11 +575,11 @@
 }
 
 .bar-fill.home {
-  background-color: #0284c7;
+  background-color: var(--bluelock-primary);
 }
 
 .bar-fill.away {
-  background-color: #db2777;
+  background-color: var(--bluelock-aura);
 }
 
 /* Simple Stat Rows */
@@ -620,7 +620,7 @@
 }
 
 .rewards-modal {
-  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.1);
   padding: 40px;

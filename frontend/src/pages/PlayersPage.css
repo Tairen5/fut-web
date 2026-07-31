@@ -90,7 +90,7 @@
 
 .catalog-hero-stat-label {
   font-family: var(--font-ui);
-  font-size: 0.6rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 1.5px;
@@ -303,17 +303,6 @@
 .state-icon { font-size: 3rem; }
 
 .error-state { color: rgba(255,100,100,0.7); }
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(30, 93, 219,0.15);
-  border-top-color: var(--bluelock-primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
 
 /* Grid */
 .players-grid {
@@ -774,7 +763,7 @@
 }
 
 .stat-card-label {
-  font-size: 0.65rem;
+  font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
   color: rgba(232, 234, 240, 0.4);

@@ -147,7 +147,7 @@
 
 .detail-info-label {
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
   color: rgba(232,234,240,0.35);
   text-transform: uppercase;
   font-weight: 600;
@@ -282,7 +282,7 @@
 
 .detail-stat-bar-wrap {
   flex: 1;
-  height: 2px;
+  height: 8px;
   background: rgba(255,255,255,0.06);
   overflow: hidden;
 }
