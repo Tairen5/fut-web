@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  shortName: { type: String },
   groupKey: { type: String, index: true },
   promo: { type: String, index: true },
   image: { type: String, required: true },

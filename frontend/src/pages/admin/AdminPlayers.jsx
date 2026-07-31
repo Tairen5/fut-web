@@ -15,7 +15,7 @@ const getImageUrl = (img, folder) => {
 };
 
 const emptyPlayer = {
-  name: '', image: '', overall: 80, position: 'ST',
+  name: '', shortName: '', image: '', overall: 80, position: 'ST',
   secondaryPositions: [], promo: '', groupKey: '',
   stats: { pac: 80, sho: 80, pas: 80, dri: 80, def: 80, phy: 80 },
   club: { name: '', image: '' }, league: { name: '', image: '' },
@@ -47,7 +47,7 @@ function CardPreview({ form }) {
             <div className="card-preview-placeholder">👤</div>
           )}
         </div>
-        <div className="card-preview-name">{form.name || 'Nombre'}</div>
+        <div className="card-preview-name">{form.shortName || form.name || 'Nombre'}</div>
         <div className="card-preview-stats">
           {['pac', 'sho', 'pas', 'dri', 'def', 'phy'].map((k) => (
             <div key={k} className="card-preview-stat">
@@ -228,6 +228,10 @@ export default function AdminPlayers() {
                       <div className="form-group">
                         <label className="form-label">DISPLAY NAME</label>
                         <input className="form-input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">SHORT NAME</label>
+                        <input className="form-input" value={form.shortName || ''} onChange={(e) => setForm({ ...form, shortName: e.target.value })} placeholder="ej: Messi" />
                       </div>
                       <div className="form-row-2">
                         <div className="form-group">
