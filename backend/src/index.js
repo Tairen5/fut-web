@@ -9,7 +9,6 @@ import authRoutes from './routes/authRoutes.js';
 import packRoutes from './routes/packRoutes.js';
 import matchRoutes from './routes/matchRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
-import assetRoutes from './routes/assetRoutes.js';
 
 dotenv.config();
 
@@ -28,7 +27,6 @@ app.use('/api/user-players', userPlayerRoutes);
 app.use('/api/packs', packRoutes);
 app.use('/api/matches', matchRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/admin', assetRoutes);
 
 app.get('/', (req, res) => {
   res.send('FUT Web API is running...');

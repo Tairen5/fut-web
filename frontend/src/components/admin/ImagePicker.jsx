@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import api from '../../services/api';
 import './ImagePicker.css';
 
 export default function ImagePicker({ folder, value, onChange, label }) {
@@ -9,8 +8,9 @@ export default function ImagePicker({ folder, value, onChange, label }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    api.get(`/admin/assets/${folder}`)
-      .then((res) => setImages(res.data))
+    fetch('/image-manifest.json')
+      .then((res) => res.json())
+      .then((data) => setImages(data[folder] || []))
       .catch(() => setImages([]));
   }, [folder]);
 
