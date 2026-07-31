@@ -1,18 +1,49 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
+import ImagePicker from '../../components/admin/ImagePicker';
 import AdminLayout from '../../components/admin/AdminLayout';
 import '../../components/admin/admin.css';
-
-const emptyPack = {
-  name: '', price: 0, numCards: 3, type: 'standard', availableInStore: true, image: '',
-  possibleCards: [],
-};
+import './AdminPlayers.css';
 
 const getImageUrl = (img, folder) => {
   if (!img) return `/${folder}/default.png`;
   if (img.startsWith('http') || img.startsWith('data:') || img.startsWith('/')) return img;
   return `/${folder}/${img}`;
 };
+
+const emptyPack = {
+  name: '', price: 0, numCards: 3, type: 'standard', availableInStore: true, image: '',
+  possibleCards: [],
+};
+
+function PackPreview({ form }) {
+  const imgSrc = form.image
+    ? (form.image.startsWith('http') || form.image.startsWith('data:') || form.image.startsWith('/')
+        ? form.image
+        : `/packs/${form.image}`)
+    : null;
+
+  return (
+    <div className="card-preview">
+      {imgSrc ? (
+        <img
+          src={imgSrc}
+          alt={form.name || 'Pack'}
+          className="card-preview-img"
+          onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+        />
+      ) : null}
+      <div className="card-preview-placeholder" style={{ display: imgSrc ? 'none' : 'flex' }}>
+        <span>Sin imagen</span>
+      </div>
+      <div className="pack-preview-info">
+        <span className="pack-preview-name">{form.name || 'Nombre del sobre'}</span>
+        <span className="pack-preview-price">{form.price?.toLocaleString() || '0'} coins</span>
+        <span className="pack-preview-meta">{form.numCards} cartas · {form.type} · {form.availableInStore ? 'En tienda' : 'No disponible'}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function AdminPacks() {
   const [packs, setPacks] = useState([]);
@@ -21,6 +52,7 @@ export default function AdminPacks() {
   const [modal, setModal] = useState(null);
   const [form, setForm] = useState(emptyPack);
   const [editId, setEditId] = useState(null);
+  const [tab, setTab] = useState('info');
 
   const fetchData = () => {
     setLoading(true);
@@ -35,8 +67,8 @@ export default function AdminPacks() {
 
   useEffect(() => { fetchData(); }, []);
 
-  const openCreate = () => { setForm({ ...emptyPack, possibleCards: [] }); setEditId(null); setModal('create'); };
-  const openEdit = (p) => { setForm({ ...p }); setEditId(p._id); setModal('edit'); };
+  const openCreate = () => { setForm({ ...emptyPack, possibleCards: [] }); setEditId(null); setModal('create'); setTab('info'); };
+  const openEdit = (p) => { setForm({ ...p }); setEditId(p._id); setModal('edit'); setTab('info'); };
 
   const handleSave = async () => {
     try {
@@ -128,75 +160,111 @@ export default function AdminPacks() {
       )}
 
       {modal && (
-        <div className="admin-modal-overlay" onClick={() => setModal(null)}>
-          <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="admin-modal-header">
-              <h2 className="admin-modal-title">{modal === 'edit' ? 'Editar Sobre' : 'Crear Sobre'}</h2>
-              <button className="admin-modal-close" onClick={() => setModal(null)}>✕</button>
-            </div>
+        <div className="player-modal-overlay" onClick={() => setModal(null)}>
+          <div className="player-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="player-modal-close" onClick={() => setModal(null)}>✕</button>
 
-            <div className="admin-form">
-              <div className="admin-form-row">
-                <div>
-                  <label className="admin-label">Nombre</label>
-                  <input className="admin-input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                </div>
-                <div>
-                  <label className="admin-label">Precio (coins)</label>
-                  <input className="admin-input" type="number" min="0" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} />
-                </div>
-              </div>
-              <div className="admin-form-row">
-                <div>
-                  <label className="admin-label">Nº de cartas</label>
-                  <input className="admin-input" type="number" min="1" max="30" value={form.numCards} onChange={(e) => setForm({ ...form, numCards: Number(e.target.value) })} />
-                </div>
-                <div>
-                  <label className="admin-label">Tipo</label>
-                  <select className="admin-select" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
-                    <option value="standard">Standard</option>
-                    <option value="draft">Draft</option>
-                  </select>
-                </div>
-              </div>
-              <div className="admin-form-row">
-                <div>
-                  <label className="admin-label">Imagen URL</label>
-                  <input className="admin-input" value={form.image || ''} onChange={(e) => setForm({ ...form, image: e.target.value })} />
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                  <label className="admin-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: 0 }}>
-                    <input type="checkbox" checked={form.availableInStore} onChange={(e) => setForm({ ...form, availableInStore: e.target.checked })} />
-                    Disponible en tienda
-                  </label>
-                </div>
-              </div>
+            <div className="player-modal-layout">
+              <PackPreview form={form} />
 
-              <div style={{ marginTop: '0.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                  <label className="admin-label" style={{ marginBottom: 0 }}>Jugadores probables (peso)</label>
-                  <button className="admin-btn admin-btn-outline admin-btn-small" onClick={addPossibleCard}>+ Añadir</button>
+              <div className="player-modal-form">
+                <div className="player-modal-tabs">
+                  {[
+                    { id: 'info', label: 'Info' },
+                    { id: 'players', label: 'Players' },
+                  ].map((t) => (
+                    <button
+                      key={t.id}
+                      className={`player-modal-tab ${tab === t.id ? 'active' : ''}`}
+                      onClick={() => setTab(t.id)}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
                 </div>
-                {form.possibleCards.map((pc, i) => (
-                  <div key={i} className="admin-form-row" style={{ marginBottom: '0.4rem', alignItems: 'center' }}>
-                    <select className="admin-select" value={pc.player_id} onChange={(e) => updatePossibleCard(i, 'player_id', e.target.value)}>
-                      <option value="">Seleccionar jugador...</option>
-                      {players.map((p) => (
-                        <option key={p._id} value={p._id}>{p.name} ({p.overall} OVR)</option>
+
+                <div className="player-modal-body">
+                  {tab === 'info' && (
+                    <>
+                      <h3 className="form-section-title">Pack Info</h3>
+                      <div className="form-group">
+                        <label className="form-label">NAME</label>
+                        <input className="form-input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                      </div>
+                      <div className="form-row-2">
+                        <div className="form-group">
+                          <label className="form-label">PRICE (COINS)</label>
+                          <input className="form-input" type="number" min="0" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">NUM CARDS</label>
+                          <input className="form-input" type="number" min="1" max="30" value={form.numCards} onChange={(e) => setForm({ ...form, numCards: Number(e.target.value) })} />
+                        </div>
+                      </div>
+                      <div className="form-row-2">
+                        <div className="form-group">
+                          <label className="form-label">TYPE</label>
+                          <select className="form-select" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
+                            <option value="standard">Standard</option>
+                            <option value="draft">Draft</option>
+                          </select>
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">STORE</label>
+                          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.4rem', cursor: 'pointer' }}>
+                            <input type="checkbox" checked={form.availableInStore} onChange={(e) => setForm({ ...form, availableInStore: e.target.checked })} />
+                            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.85rem', color: '#e8eaf0' }}>Disponible en tienda</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <ImagePicker
+                          folder="packs"
+                          value={form.image || ''}
+                          onChange={(val) => setForm({ ...form, image: val })}
+                          label="PACK IMAGE"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {tab === 'players' && (
+                    <>
+                      <h3 className="form-section-title">Possible Cards</h3>
+                      <div style={{ marginBottom: '0.8rem' }}>
+                        <button className="admin-btn admin-btn-primary admin-btn-small" onClick={addPossibleCard}>+ Añadir jugador</button>
+                      </div>
+                      {form.possibleCards.map((pc, i) => (
+                        <div key={i} className="form-row-2" style={{ marginBottom: '0.5rem', alignItems: 'center' }}>
+                          <select className="form-select" value={pc.player_id} onChange={(e) => updatePossibleCard(i, 'player_id', e.target.value)}>
+                            <option value="">Seleccionar jugador...</option>
+                            {players.map((p) => (
+                              <option key={p._id} value={p._id}>{p.name} ({p.overall} OVR)</option>
+                            ))}
+                          </select>
+                          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                            <div className="form-group" style={{ margin: 0, flex: 1 }}>
+                              <label className="form-label">WEIGHT</label>
+                              <input className="form-input" type="number" min="1" value={pc.weight}
+                                onChange={(e) => updatePossibleCard(i, 'weight', e.target.value)} />
+                            </div>
+                            <button className="admin-btn admin-btn-danger admin-btn-small" style={{ marginTop: '1rem' }} onClick={() => removePossibleCard(i)}>✕</button>
+                          </div>
+                        </div>
                       ))}
-                    </select>
-                    <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-                      <input className="admin-input" type="number" min="1" value={pc.weight}
-                        onChange={(e) => updatePossibleCard(i, 'weight', e.target.value)} style={{ width: 70 }} />
-                      <button className="admin-btn admin-btn-danger admin-btn-small" onClick={() => removePossibleCard(i)}>✕</button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                      {form.possibleCards.length === 0 && (
+                        <div className="admin-empty">No hay jugadores añadidos</div>
+                      )}
+                    </>
+                  )}
+                </div>
 
-              <button className="admin-btn admin-btn-primary" onClick={handleSave} style={{ marginTop: '1rem', alignSelf: 'flex-start' }}>
-                {modal === 'edit' ? 'Guardar Cambios' : 'Crear Sobre'}
-              </button>
+                <div className="player-modal-footer">
+                  <button className="admin-btn admin-btn-primary" onClick={handleSave}>
+                    {modal === 'edit' ? 'Guardar Cambios' : 'Crear Sobre'}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

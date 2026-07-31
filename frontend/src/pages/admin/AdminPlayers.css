@@ -74,6 +74,40 @@
   color: rgba(232, 234, 240, 0.2);
 }
 
+.pack-preview-info {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pack-preview-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pack-preview-price {
+  font-family: var(--font-stats);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bluelock-primary);
+}
+
+.pack-preview-meta {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: rgba(232, 234, 240, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* === RIGHT: Form === */
 .player-modal-form {
   flex: 1;
