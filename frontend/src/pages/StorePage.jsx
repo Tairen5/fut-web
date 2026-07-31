@@ -157,9 +157,16 @@ const StorePage = () => {
               .map((c) => c.player_id)
               .filter(Boolean) || [];
             return (
-              <div key={pack._id} className="store-pack-card" style={{ '--pack-accent': style.accent, borderColor: style.border }}>
+              <div
+                key={pack._id}
+                className={`store-pack-card ${!user || user.currency < pack.price ? 'store-pack-card--disabled' : ''}`}
+                style={{ '--pack-accent': style.accent, borderColor: style.border }}
+                onClick={() => handleBuyPack(pack._id)}
+                role="button"
+                tabIndex={0}
+              >
                 <div className="store-pack-visual" style={{ background: style.bg }}>
-                  <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}22 0%, transparent 70%)` }} />
+                  <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}33 0%, transparent 70%)` }} />
                   {pack.image ? (
                     <div className="store-pack-image">
                       <img
@@ -181,6 +188,7 @@ const StorePage = () => {
                   )}
                 </div>
                 <div className="store-pack-info">
+                  <h3 className="store-pack-name" style={{ color: style.accent }}>{pack.name}</h3>
                   <div className="store-pack-stats">
                     <div className="store-pack-stat">
                       <div className="store-pack-stat-icon store-pack-stat-icon--players" />
@@ -192,27 +200,19 @@ const StorePage = () => {
                       <span className="store-pack-stat-val">{pack.numCards}</span>
                       <span className="store-pack-stat-label">Items</span>
                     </div>
-                    <div className="store-pack-stat">
-                      <div className="store-pack-stat-icon store-pack-stat-icon--rare" />
-                      <span className="store-pack-stat-val">{highlighted.length}</span>
-                      <span className="store-pack-stat-label">Rares</span>
-                    </div>
                   </div>
-                  <div className="store-pack-bottom">
+                  <div className="store-pack-price">
+                    <div className="store-pack-price-coin" />
+                    <span>{pack.price.toLocaleString()}</span>
+                  </div>
+                  {highlighted.length > 0 && (
                     <button
-                      className="store-buy-btn"
-                      onClick={() => handleBuyPack(pack._id)}
-                      disabled={!user || user.currency < pack.price}
+                      className="store-highlight-btn"
+                      onClick={(e) => { e.stopPropagation(); setHighlightPack({ pack, players: highlighted }); }}
                     >
-                      <div className="store-buy-coin" />
-                      {pack.price.toLocaleString()}
+                      View Highlights
                     </button>
-                    {highlighted.length > 0 && (
-                      <button className="store-highlight-btn" onClick={() => setHighlightPack({ pack, players: highlighted })}>
-                        View Highlights
-                      </button>
-                    )}
-                  </div>
+                  )}
                 </div>
               </div>
             );
