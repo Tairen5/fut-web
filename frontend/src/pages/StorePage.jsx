@@ -29,6 +29,7 @@ const StorePage = () => {
   const [openedCards, setOpenedCards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [claimTimeLeft, setClaimTimeLeft] = useState(0);
+  const [highlightPack, setHighlightPack] = useState(null);
   const { user, setUser } = useAuthStore();
   const navigate = useNavigate();
 
@@ -117,18 +118,24 @@ const StorePage = () => {
     <div className="store-page">
       <div className="store-hero">
         <div className="store-hero-content">
-          <span className="store-hero-badge">BLUE LOCK</span>
-          <h2 className="store-hero-title">{featured?.name || 'PREMIUM PACK'}</h2>
-          <p className="store-hero-desc">The best pack to find the best players.</p>
-          {featured && (
-            <button className="store-hero-btn" onClick={() => handleBuyPack(featured._id)}>
-              VIEW PACK <span>›</span>
+          <h2 className="store-hero-title">Free Pack</h2>
+          <p className="store-hero-desc">Get a free pack every minute</p>
+          {claimTimeLeft > 0 ? (
+            <div className="store-hero-timer">
+              <span>Available in {formatTime(claimTimeLeft)}</span>
+            </div>
+          ) : (
+            <button className="store-hero-btn" onClick={handleClaim}>
+              CLAIM NOW <span>&rsaquo;</span>
             </button>
           )}
         </div>
         <div className="store-hero-visual">
           <div className="store-hero-glow" />
-          <div className="store-hero-pack-icon">🎁</div>
+          <div className="store-hero-pack-stack">
+            <div className="store-hero-pack-card" />
+            <div className="store-hero-pack-card store-hero-pack-card--top" />
+          </div>
         </div>
         <div className="store-hero-blue-lock-watermark">BLUE<br/>LOCK</div>
       </div>
@@ -137,15 +144,20 @@ const StorePage = () => {
         <button className="store-tab active">Packs</button>
         <button className="store-tab">Items</button>
         <button className="store-tab">Bundles</button>
+        <button className="store-tab">Stadium</button>
+        <button className="store-tab">Customization</button>
       </div>
 
       <section className="store-packs-section">
         <div className="store-packs-grid">
           {packs.map((pack) => {
             const style = getPackStyle(pack.name);
-            const rareCount = pack.possibleCards?.filter((c) => c.player_id?.overall >= 85).length || 0;
+            const highlighted = pack.possibleCards
+              ?.filter((c) => c.player_id?.overall >= 85)
+              .map((c) => c.player_id)
+              .filter(Boolean) || [];
             return (
-              <div key={pack._id} className="store-pack-card" style={{ borderColor: style.border }}>
+              <div key={pack._id} className="store-pack-card" style={{ '--pack-accent': style.accent, borderColor: style.border }}>
                 <div className="store-pack-visual" style={{ background: style.bg }}>
                   <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}22 0%, transparent 70%)` }} />
                   <div className="store-pack-image">
@@ -156,7 +168,7 @@ const StorePage = () => {
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
                     ) : (
-                      <div className="store-pack-icon-placeholder">🎁</div>
+                      <div className="store-pack-icon-placeholder" />
                     )}
                   </div>
                   <span className="store-pack-label" style={{ color: style.accent }}>{pack.name}</span>
@@ -164,29 +176,36 @@ const StorePage = () => {
                 <div className="store-pack-info">
                   <div className="store-pack-stats">
                     <div className="store-pack-stat">
-                      <span className="store-pack-stat-icon">👤</span>
+                      <div className="store-pack-stat-icon store-pack-stat-icon--players" />
                       <span className="store-pack-stat-val">{pack.numCards}</span>
-                      <span className="store-pack-stat-label">PLAYERS</span>
+                      <span className="store-pack-stat-label">Players</span>
                     </div>
                     <div className="store-pack-stat">
-                      <span className="store-pack-stat-icon">🃏</span>
+                      <div className="store-pack-stat-icon store-pack-stat-icon--items" />
                       <span className="store-pack-stat-val">{pack.numCards}</span>
-                      <span className="store-pack-stat-label">ITEMS</span>
+                      <span className="store-pack-stat-label">Items</span>
                     </div>
                     <div className="store-pack-stat">
-                      <span className="store-pack-stat-icon">⭐</span>
-                      <span className="store-pack-stat-val">{rareCount}</span>
-                      <span className="store-pack-stat-label">RARES</span>
+                      <div className="store-pack-stat-icon store-pack-stat-icon--rare" />
+                      <span className="store-pack-stat-val">{highlighted.length}</span>
+                      <span className="store-pack-stat-label">Rares</span>
                     </div>
                   </div>
-                  <button
-                    className="store-buy-btn"
-                    onClick={() => handleBuyPack(pack._id)}
-                    disabled={!user || user.currency < pack.price}
-                  >
-                    <span className="store-buy-coins">🪙</span>
-                    {pack.price.toLocaleString()}
-                  </button>
+                  <div className="store-pack-bottom">
+                    <button
+                      className="store-buy-btn"
+                      onClick={() => handleBuyPack(pack._id)}
+                      disabled={!user || user.currency < pack.price}
+                    >
+                      <div className="store-buy-coin" />
+                      {pack.price.toLocaleString()}
+                    </button>
+                    {highlighted.length > 0 && (
+                      <button className="store-highlight-btn" onClick={() => setHighlightPack({ pack, players: highlighted })}>
+                        View Highlights
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             );
@@ -194,24 +213,23 @@ const StorePage = () => {
         </div>
       </section>
 
-      <section className="store-claim-section">
-        <div className="store-claim-card">
-          <div className="store-claim-left">
-            <span className="store-claim-icon">🎁</span>
-            <div>
-              <h3 className="store-claim-title">Free Pack</h3>
-              <p className="store-claim-desc">Claim a free pack every minute</p>
+      {highlightPack && (
+        <div className="store-highlight-overlay" onClick={() => setHighlightPack(null)}>
+          <div className="store-highlight-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="store-highlight-header">
+              <h3>{highlightPack.pack.name} — Highlights</h3>
+              <button className="store-highlight-close" onClick={() => setHighlightPack(null)}>&times;</button>
+            </div>
+            <div className="store-highlight-grid">
+              {highlightPack.players.map((p, i) => (
+                <div key={p._id || i} className="store-highlight-card">
+                  <PlayerCard player={p} />
+                </div>
+              ))}
             </div>
           </div>
-          {claimTimeLeft > 0 ? (
-            <div className="store-claim-timer">
-              <span>{formatTime(claimTimeLeft)}</span>
-            </div>
-          ) : (
-            <button className="store-claim-btn" onClick={handleClaim}>Claim</button>
-          )}
         </div>
-      </section>
+      )}
 
       {showOpening && (
         <div className="pack-opening-overlay" onClick={nextCard}>
