@@ -79,6 +79,7 @@ export async function findOrCreateUser(discordUser) {
       currency: user.currency,
       points: user.points,
       elo: user.elo,
+      isAdmin: user.isAdmin,
       record: user.record,
     },
   };
@@ -96,6 +97,7 @@ export async function getMe(userId) {
     currency: user.currency,
     points: user.points,
     elo: user.elo,
+    isAdmin: user.isAdmin,
     record: user.record,
   };
 }

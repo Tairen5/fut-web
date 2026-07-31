@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   currency: { type: Number, default: 0 },
   points: { type: Number, default: 0 },
   elo: { type: Number, default: 1000 },
+  isAdmin: { type: Boolean, default: false },
   record: {
     wins: { type: Number, default: 0 },
     draws: { type: Number, default: 0 },

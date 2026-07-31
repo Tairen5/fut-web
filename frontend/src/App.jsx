@@ -15,6 +15,12 @@ import MatchHubPage from './pages/MatchHubPage';
 import MatchLivePage from './pages/MatchLivePage';
 import EvolutionPage from './pages/EvolutionPage';
 import useAuthStore from './store/useAuthStore';
+import AdminRoute from './components/admin/AdminRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminPlayers from './pages/admin/AdminPlayers';
+import AdminPacks from './pages/admin/AdminPacks';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminObjectives from './pages/admin/AdminObjectives';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -55,6 +61,11 @@ function AnimatedRoutes() {
           <Route path="/promos/:promoName" element={<PromoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/auth/callback" element={<DiscordCallbackPage />} />
+          <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/players" element={<AdminRoute><AdminPlayers /></AdminRoute>} />
+          <Route path="/admin/packs" element={<AdminRoute><AdminPacks /></AdminRoute>} />
+          <Route path="/admin/users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
+          <Route path="/admin/objectives" element={<AdminRoute><AdminObjectives /></AdminRoute>} />
         </Routes>
       </motion.div>
     </AnimatePresence>

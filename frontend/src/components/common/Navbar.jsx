@@ -96,6 +96,19 @@ const NAV_ITEMS = [
   },
 ];
 
+const ADMIN_ITEMS = [
+  {
+    to: '/admin',
+    label: 'Admin',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+    ),
+  },
+];
+
 export default function Navbar() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
@@ -109,6 +122,16 @@ export default function Navbar() {
 
         <div className="sidebar-nav">
           {NAV_ITEMS.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+            >
+              <span className="sidebar-icon">{item.icon}</span>
+              <span className="sidebar-label">{item.label}</span>
+            </NavLink>
+          ))}
+          {user?.isAdmin && ADMIN_ITEMS.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
