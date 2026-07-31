@@ -88,12 +88,19 @@ export default function AdminPacks() {
           <table className="admin-table">
             <thead>
               <tr>
-                <th>Nombre</th><th>Precio</th><th>Cartas</th><th>Tipo</th><th>Tienda</th><th>Probables</th><th>Acciones</th>
+                <th></th><th>Nombre</th><th>Precio</th><th>Cartas</th><th>Tipo</th><th>Tienda</th><th>Probables</th><th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {packs.map((p) => (
                 <tr key={p._id}>
+                  <td>
+                    {p.image ? (
+                      <img src={p.image} alt={p.name} style={{ width: 40, height: 40, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                    ) : (
+                      <div style={{ width: 40, height: 40, background: 'var(--bg-surface)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: 'rgba(232,234,240,0.3)' }}>🎁</div>
+                    )}
+                  </td>
                   <td style={{ fontWeight: 600 }}>{p.name}</td>
                   <td>{p.price.toLocaleString()} coins</td>
                   <td>{p.numCards}</td>
@@ -108,7 +115,7 @@ export default function AdminPacks() {
                   </td>
                 </tr>
               ))}
-              {packs.length === 0 && <tr><td colSpan={7} className="admin-empty">No hay sobres creados</td></tr>}
+              {packs.length === 0 && <tr><td colSpan={8} className="admin-empty">No hay sobres creados</td></tr>}
             </tbody>
           </table>
         </div>

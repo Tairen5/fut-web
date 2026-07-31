@@ -86,13 +86,20 @@ export default function AdminPlayers() {
       <div className="admin-table-wrapper">
         <table className="admin-table">
           <thead>
-            <tr>
-              <th>OVR</th><th>Nombre</th><th>Pos</th><th>Promo</th><th>Club</th><th>Nación</th><th>Acciones</th>
-            </tr>
+              <tr>
+                <th></th><th>OVR</th><th>Nombre</th><th>Pos</th><th>Promo</th><th>Club</th><th>Nación</th><th>Acciones</th>
+              </tr>
           </thead>
           <tbody>
             {paged.map((p) => (
               <tr key={p._id}>
+                <td>
+                  {p.image ? (
+                    <img src={p.image} alt={p.name} style={{ width: 36, height: 36, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                  ) : (
+                    <div style={{ width: 36, height: 36, background: 'var(--bg-surface)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: 'rgba(232,234,240,0.3)' }}>N/A</div>
+                  )}
+                </td>
                 <td><span style={{ color: '#1e5ddb', fontWeight: 700 }}>{p.overall}</span></td>
                 <td>{p.name}</td>
                 <td>{p.position}</td>
@@ -107,7 +114,7 @@ export default function AdminPlayers() {
                 </td>
               </tr>
             ))}
-            {paged.length === 0 && <tr><td colSpan={7} className="admin-empty">Sin resultados</td></tr>}
+            {paged.length === 0 && <tr><td colSpan={8} className="admin-empty">Sin resultados</td></tr>}
           </tbody>
         </table>
       </div>
