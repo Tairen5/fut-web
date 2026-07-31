@@ -160,18 +160,25 @@ const StorePage = () => {
               <div key={pack._id} className="store-pack-card" style={{ '--pack-accent': style.accent, borderColor: style.border }}>
                 <div className="store-pack-visual" style={{ background: style.bg }}>
                   <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}22 0%, transparent 70%)` }} />
-                  <div className="store-pack-image">
-                    {pack.image ? (
+                  {pack.image ? (
+                    <div className="store-pack-image">
                       <img
                         src={pack.image.startsWith('http') || pack.image.startsWith('/') ? pack.image : `/packs/${pack.image}`}
                         alt={pack.name}
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
-                    ) : (
-                      <div className="store-pack-icon-placeholder" />
-                    )}
-                  </div>
-                  <span className="store-pack-label" style={{ color: style.accent }}>{pack.name}</span>
+                    </div>
+                  ) : (
+                    <div className="store-pack-envelope" style={{ '--env-accent': style.accent }}>
+                      <div className="store-pack-envelope-back" />
+                      <div className="store-pack-envelope-front">
+                        <div className="store-pack-envelope-logo">
+                          <div className="store-pack-envelope-pentagon" />
+                        </div>
+                      </div>
+                      <div className="store-pack-envelope-shine" />
+                    </div>
+                  )}
                 </div>
                 <div className="store-pack-info">
                   <div className="store-pack-stats">
