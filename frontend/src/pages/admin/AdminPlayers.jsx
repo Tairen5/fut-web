@@ -23,10 +23,9 @@ export default function AdminPlayers() {
   const [editId, setEditId] = useState(null);
 
   const fetchPlayers = () => {
-    setLoading(true);
     api.get('/admin/players')
       .then((res) => setPlayers(res.data))
-      .finally(() => setLoading(false));
+      .catch(() => {});
   };
 
   useEffect(() => { fetchPlayers(); }, []);
