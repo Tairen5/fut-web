@@ -43,7 +43,7 @@
 .catalog-hero {
   position: relative;
   width: calc(100vw - 200px);
-  margin-left: calc(-1 * ((100vw - 200px - 100%) / 2 + 2rem));
+  margin-left: calc(-50vw + 50% + 100px);
   padding: 3rem 4rem 2.5rem;
   overflow: hidden;
 }
