@@ -47,7 +47,6 @@
   margin-right: calc(-1 * ((100vw - 200px - 100%) / 2 + 2rem));
   padding: 3rem 4rem 2.5rem;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .catalog-hero-bg {
@@ -59,6 +58,17 @@
     radial-gradient(ellipse 50% 60% at 95% 90%, rgba(30, 93, 219, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse 40% 50% at 5% 95%, rgba(73, 130, 245, 0.12) 0%, transparent 50%),
     linear-gradient(180deg, rgba(20, 20, 20, 0.6) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.catalog-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, transparent 0%, var(--bg-base) 100%);
   pointer-events: none;
 }
 
@@ -150,6 +160,7 @@
   align-items: flex-end;
   gap: 1rem;
   flex-shrink: 0;
+  padding-right: 1rem;
 }
 
 .catalog-hero-card {
@@ -227,8 +238,7 @@
 }
 
 .search-bar-inline:focus-within {
-  border-color: rgba(30, 93, 219,0.4);
-  box-shadow: var(--glow-bluelock);
+  border-color: rgba(30, 93, 219, 0.4);
 }
 
 .search-icon {
