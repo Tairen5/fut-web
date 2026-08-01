@@ -323,6 +323,7 @@ export default function SquadPage() {
         <div className="squad-center">
           <div className="squad-pitch-area" onDragOver={(e) => e.preventDefault()}>
             <div className="squad-pitch">
+              <img src="/assets/squad-image.png" alt="" className="squad-pitch-img" />
               <div className="squad-pitch-slots">
               {formation.positions.map((pos) => {
                 const player = getPlayerAtSlot(pos.index);

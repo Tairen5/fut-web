@@ -223,8 +223,17 @@
   position: relative;
   width: 85%;
   max-width: 1200px;
-  height: 100%;
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squad-pitch-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: fadeIn 0.8s ease both;
 }
 
 .squad-pitch-slots {
@@ -233,15 +242,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.squad-pitch::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/assets/squad-image.png') center / contain no-repeat;
-  pointer-events: none;
-  animation: fadeIn 0.8s ease both;
 }
 
 @keyframes pitchEntrance {
