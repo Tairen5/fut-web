@@ -243,6 +243,7 @@
   height: auto;
   display: block;
   animation: fadeIn 0.8s ease both;
+  opacity: 0.8;
 }
 
 .squad-pitch-slots {
