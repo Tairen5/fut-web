@@ -494,33 +494,7 @@ export default function PlayersPage() {
         )
       )}
 
-      {viewType !== 'promos' && !loading && !error && totalPages > 1 && (
-        <div className="pagination">
-          <button className="pagination-arrow" disabled={currentPage === 1} onClick={() => setCurrentPage((p) => p - 1)}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
-          {(() => {
-            const pages = [];
-            if (totalPages <= 5) {
-              for (let i = 1; i <= totalPages; i++) pages.push(i);
-            } else {
-              pages.push(1);
-              if (currentPage > 3) pages.push('...');
-              for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) pages.push(i);
-              if (currentPage < totalPages - 2) pages.push('...');
-              pages.push(totalPages);
-            }
-            return pages.map((page, idx) =>
-              page === '...'
-                ? <span key={`dots-${idx}`} className="pagination-dots">...</span>
-                : <button key={page} className={`pagination-page ${currentPage === page ? 'active' : ''}`} onClick={() => setCurrentPage(page)}>{page}</button>
-            );
-          })()}
-          <button className="pagination-arrow" disabled={currentPage === totalPages} onClick={() => setCurrentPage((p) => p + 1)}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
-      )}
+
     </div>
   );
 }
