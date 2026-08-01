@@ -22,13 +22,6 @@ const NAV_ITEMS = [
     ),
   },
   {
-    to: '/players',
-    label: 'Players',
-    icon: (
-      <img src="/assets/playersicon.png" alt="Players" className="sidebar-icon-img" />
-    ),
-  },
-  {
     to: '/collection',
     label: 'Collection',
     icon: (
