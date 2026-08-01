@@ -220,17 +220,16 @@
 
 .squad-pitch {
   position: relative;
-  width: 90%;
-  max-width: none;
-  max-height: 110%;
-  height: 110%;
-  margin-left: -5%;
-  margin-top: 3%;
+  width: 70%;
+  max-width: 800px;
+  max-height: 90%;
+  height: 90%;
+  margin: auto;
 }
 
 .squad-pitch-slots {
   position: absolute;
-  top: -14%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
