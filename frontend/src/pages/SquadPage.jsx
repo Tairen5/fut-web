@@ -17,7 +17,6 @@ export default function SquadPage() {
   const [selectedBenchSlot, setSelectedBenchSlot] = useState(null);
   const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [subsOpen, setSubsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
   const [dragData, setDragData] = useState(null);
@@ -328,18 +327,6 @@ export default function SquadPage() {
       <div className="squad-main">
         {/* Center */}
         <div className="squad-center">
-          <div className="squad-top">
-            <div className="squad-top-tabs">
-              {squads.map((s) => (
-                <button key={s._id} className={`squad-tab ${activeSquad?._id === s._id ? 'active' : ''}`} onClick={() => activateSquad(s._id)}>
-                  {s.name}
-                  {squads.length > 1 && <span className="squad-tab-x" onClick={(e) => { e.stopPropagation(); deleteSquad(s._id); }}>×</span>}
-                </button>
-              ))}
-              <button className="squad-tab-add" onClick={createSquad}>+</button>
-            </div>
-          </div>
-
           <div className="squad-pitch-area" onDragOver={(e) => e.preventDefault()}>
             <div className="squad-pitch">
               <div className="squad-pitch-slots">
@@ -378,39 +365,8 @@ export default function SquadPage() {
             </div>
           </div>
 
-          <div className="squad-subs-bar">
-            <button className="squad-subs-toggle" onClick={() => setSubsOpen(!subsOpen)}>
-              {subsOpen ? '▲' : '▼'} Subs
-            </button>
-          </div>
-
-          {subsOpen && (
-            <div className="squad-subs-panel">
-              <div className="squad-subs-scroll">
-                {Array.from({ length: 7 }).map((_, i) => {
-                  const player = getPlayerAtBench(i);
-                  return (
-                    <div
-                      key={i}
-                      className="sub-card"
-                      onClick={() => { setSelectedBenchSlot(i); setModalFilters((prev) => ({ ...prev, position: '' })); }}
-                      draggable={!!player}
-                      onDragStart={handleDragStart('bench', i)}
-                      onDragOver={(e) => e.preventDefault()}
-                      onDrop={() => handleDrop('bench', i)}
-                    >
-                      {player ? (
-                        <img src={getImageUrl(player.image, 'player-cards')} alt="" className="sub-card-img" />
-                      ) : (
-                        <img src="/assets/player-empty.png" alt="" className="sub-card-img sub-card-img-empty" />
-                      )}
-                      <span className="sub-card-label">SUB {i + 1}</span>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Right Sidebar */}
@@ -445,9 +401,35 @@ export default function SquadPage() {
             Set Active
           </button>
 
+          <div className="sidebar-bench">
+            <span className="sidebar-bench-title">Bench</span>
+            <div className="sidebar-bench-grid">
+              {Array.from({ length: 7 }).map((_, i) => {
+                const player = getPlayerAtBench(i);
+                return (
+                  <div
+                    key={i}
+                    className="sub-card"
+                    onClick={() => { setSelectedBenchSlot(i); setModalFilters((prev) => ({ ...prev, position: '' })); }}
+                    draggable={!!player}
+                    onDragStart={handleDragStart('bench', i)}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={() => handleDrop('bench', i)}
+                  >
+                    {player ? (
+                      <img src={getImageUrl(player.image, 'player-cards')} alt="" className="sub-card-img" />
+                    ) : (
+                      <img src="/assets/player-empty.png" alt="" className="sub-card-img sub-card-img-empty" />
+                    )}
+                    <span className="sub-card-label">SUB {i + 1}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="sidebar-menu">
             <button className="sidebar-menu-item">Tactics <span>›</span></button>
-            <button className="sidebar-menu-item">Use Squad Builder <span>›</span></button>
             <button className="sidebar-menu-item">Rename</button>
             <button className="sidebar-menu-item">Copy</button>
             <button className="sidebar-menu-item danger">Clear Squad</button>
