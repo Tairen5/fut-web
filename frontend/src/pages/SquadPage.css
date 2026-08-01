@@ -213,17 +213,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-2) var(--space-8);
+  padding: var(--space-2) var(--space-4);
   min-height: 0;
+  overflow: hidden;
   animation: fadeIn 0.6s ease;
 }
 
 .squad-pitch {
   position: relative;
-  width: 70%;
-  max-width: 800px;
-  max-height: 90%;
-  height: 90%;
+  width: 85%;
+  max-width: 1200px;
+  height: 100%;
   margin: auto;
 }
 
@@ -239,7 +239,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/assets/squad-image.png') center / cover no-repeat;
+  background: url('/assets/squad-image.png') center / contain no-repeat;
   pointer-events: none;
   animation: fadeIn 0.8s ease both;
 }
