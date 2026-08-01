@@ -1,28 +1,18 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, NavLink } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import './TopBar.css';
 
-const PAGE_TITLES = {
-  '/players': 'Home',
-  '/squad': 'Squads',
-  '/collection': 'Club',
-  '/store': 'Store',
-  '/matches': 'Play',
-  '/login': 'Login',
-};
+const NAV_LINKS = [
+  { to: '/players', label: 'Home' },
+  { to: '/squad', label: 'Squad' },
+  { to: '/store', label: 'Store' },
+  { to: '/matches', label: 'Matches' },
+  { to: '/collection', label: 'Collection' },
+];
 
 export default function TopBar() {
   const user = useAuthStore((s) => s.user);
   const location = useLocation();
-
-  const getPageTitle = () => {
-    const path = location.pathname;
-    if (path.startsWith('/players/')) return 'Player Detail';
-    if (path.startsWith('/promos/')) return 'Promo';
-    if (path.startsWith('/matches/live')) return 'Match Day';
-    if (path.startsWith('/matches')) return 'Play';
-    return PAGE_TITLES[path] || 'Home';
-  };
 
   const clubName = user?.discordUsername || 'My Club';
   const avatarUrl = user?.discordAvatar || null;
@@ -30,14 +20,26 @@ export default function TopBar() {
   return (
     <header className="top-bar">
       <div className="top-bar-left">
-        <span className="top-bar-site-name">{getPageTitle()}</span>
+        <span className="top-bar-site-name">Blue Lock</span>
+      </div>
+
+      <div className="top-bar-center">
+        {NAV_LINKS.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            className={({ isActive }) => `top-bar-nav-link ${isActive ? 'active' : ''}`}
+          >
+            {link.label}
+          </NavLink>
+        ))}
       </div>
 
       <div className="top-bar-right">
         <div className="top-bar-currencies">
           <div className="currency-item">
             <div className="currency-icon coins-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="10" fill="#1e5ddb" stroke="#ffd166" strokeWidth="1"/>
                 <text x="12" y="16" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1a1200">C</text>
               </svg>
@@ -46,7 +48,7 @@ export default function TopBar() {
           </div>
           <div className="currency-item">
             <div className="currency-icon points-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <polygon points="12,2 15,9 22,9 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9 9,9" fill="#4f8ef7" stroke="#7ab0ff" strokeWidth="0.5"/>
               </svg>
             </div>
@@ -59,7 +61,7 @@ export default function TopBar() {
           <>
             <div className="top-bar-divider" />
             <Link to="/admin" className="top-bar-admin-btn" title="Panel Admin">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
@@ -76,13 +78,9 @@ export default function TopBar() {
           </div>
           <div className="club-badge">
             {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                alt={clubName}
-                className="club-badge-img"
-              />
+              <img src={avatarUrl} alt={clubName} className="club-badge-img" />
             ) : (
-              <svg viewBox="0 0 40 48" width="36" height="42">
+              <svg viewBox="0 0 40 48" width="32" height="38">
                 <path d="M20 4 L36 14 L36 30 Q36 42 20 46 Q4 42 4 30 L4 14 Z" fill="#1a1a2e" stroke="#1e5ddb" strokeWidth="2.5"/>
                 <text x="20" y="30" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fill="#1e5ddb" fontWeight="bold">UT</text>
               </svg>

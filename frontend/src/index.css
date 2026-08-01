@@ -435,8 +435,8 @@ h1, h2, h3 {
 
 /* === LAYOUT === */
 .app-main {
-  margin-left: 140px;
-  padding-top: 72px;
+  margin-left: 200px;
+  padding-top: 56px;
   min-height: 100vh;
   overflow-x: hidden;
 }
