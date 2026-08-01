@@ -46,7 +46,14 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   padding: 6px 14px;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
+}
+
+.currency-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-bluelock);
+  transform: translateY(-1px);
 }
 
 .currency-icon {
@@ -115,6 +122,12 @@
   border-radius: 50%;
   border: 2px solid var(--bluelock-primary);
   object-fit: cover;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.club-badge-img:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--glow-gold);
 }
 
 .club-badge-svg {
@@ -136,10 +149,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: all 0.15s;
+  border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
 }
 
 .top-bar-admin-btn:hover {
   background: rgba(255, 0, 60, 0.2);
-  box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
+  transform: translateY(-1px);
 }

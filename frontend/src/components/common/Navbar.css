@@ -29,6 +29,11 @@
   justify-content: center;
   margin-bottom: 1.5rem;
   text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand:hover {
+  transform: scale(1.05);
 }
 
 .sidebar-brand-icon {
@@ -53,16 +58,17 @@
   gap: 0.35rem;
   width: 110px;
   padding: 0.85rem 0;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   text-decoration: none;
   color: rgba(232, 234, 240, 0.4);
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   position: relative;
 }
 
 .sidebar-link:hover {
   color: #e8eaf0;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(30, 93, 219, 0.08);
+  transform: scale(1.05);
 }
 
 .sidebar-link.active {
@@ -70,7 +76,7 @@
   width: 140px;
   margin-left: -9px;
   border-radius: 0;
-  background: rgba(30, 93, 219, 0.12);
+  background: linear-gradient(90deg, rgba(30, 93, 219, 0.15) 0%, rgba(30, 93, 219, 0.05) 100%);
 }
 
 .sidebar-link.active::after {
@@ -85,14 +91,19 @@
   width: 4px;
   height: 100%;
   background: var(--bluelock-primary);
-  border-radius: 0;
-  box-shadow: -4px 0 16px rgba(30, 93, 219, 0.5);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  box-shadow: -4px 0 20px rgba(30, 93, 219, 0.6);
 }
 
 .sidebar-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.sidebar-link:hover .sidebar-icon {
+  transform: scale(1.1);
 }
 
 .sidebar-icon-img {
@@ -100,6 +111,12 @@
   height: 26px;
   object-fit: contain;
   opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar-link:hover .sidebar-icon-img,
+.sidebar-link.active .sidebar-icon-img {
+  opacity: 1;
 }
 
 .sidebar-icon svg {
@@ -139,13 +156,19 @@
 .sidebar-user-avatar {
   width: 42px;
   height: 42px;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   background: linear-gradient(135deg, #1a2332 0%, #0f1520 100%);
   border: 2px solid rgba(30, 93, 219, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sidebar-user-avatar:hover {
+  border-color: var(--bluelock-primary);
+  box-shadow: 0 0 16px rgba(30, 93, 219, 0.4);
 }
 
 .sidebar-user-avatar span {
@@ -189,7 +212,7 @@
 }
 
 .sidebar-currency.gold {
-  color: #ffffff;
+  color: var(--accent-gold);
 }
 
 .sidebar-logout {
@@ -197,18 +220,19 @@
   border: none;
   color: rgba(232, 234, 240, 0.3);
   cursor: pointer;
-  padding: 0.4rem;
-  border-radius: 0;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
   margin-top: 0.15rem;
 }
 
 .sidebar-logout:hover {
-  color: #f97066;
-  background: rgba(249, 112, 102, 0.1);
+  color: #ff3c5c;
+  background: rgba(255, 0, 60, 0.1);
+  box-shadow: var(--glow-aura);
 }
 
 .sidebar-login-btn {
@@ -217,16 +241,17 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.6rem;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   text-decoration: none;
   color: rgba(232, 234, 240, 0.4);
-  transition: all 0.2s;
+  transition: all 0.25s ease;
   width: 70px;
 }
 
 .sidebar-login-btn:hover {
   color: var(--bluelock-primary);
   background: rgba(30, 93, 219, 0.1);
+  box-shadow: var(--glow-bluelock);
 }
 
 .sidebar-login-btn span {
