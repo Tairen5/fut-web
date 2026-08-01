@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 0 2rem 4rem;
   position: relative;
+  overflow: hidden;
 }
 
 .players-page::before {
