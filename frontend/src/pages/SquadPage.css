@@ -240,7 +240,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 700'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23060c16'/%3E%3Cstop offset='.5' stop-color='%230c1a2d'/%3E%3Cstop offset='1' stop-color='%23060c16'/%3E%3C/linearGradient%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='65%25'%3E%3Cstop offset='0' stop-color='%23102840'/%3E%3Cstop offset='1' stop-color='transparent'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23bg)' width='1000' height='700'/%3E%3Crect fill='url(%23glow)' width='1000' height='700'/%3E%3Cg stroke='%23a0b0c4' stroke-width='1' fill='none' opacity='.7'%3E%3Cpath d='M240,55 L760,55 L900,645 L100,645Z'/%3E%3Cline x1='500' y1='55' x2='500' y2='645'/%3E%3Cellipse cx='500' cy='350' rx='80' ry='80'/%3E%3Cpath d='M240,185 L340,185 L340,515 L240,515Z'/%3E%3Cpath d='M240,265 L295,265 L295,435 L240,435Z'/%3E%3Cpath d='M340,290 Q380,350 340,410'/%3E%3Cpath d='M760,185 L660,185 L660,515 L760,515Z'/%3E%3Cpath d='M760,265 L705,265 L705,435 L760,435Z'/%3E%3Cpath d='M660,290 Q620,350 660,410'/%3E%3Cpath d='M240,42 Q252,35 240,28'/%3E%3Cpath d='M760,42 Q748,35 760,28'/%3E%3Cpath d='M240,658 Q252,665 240,672'/%3E%3Cpath d='M760,658 Q748,665 760,672'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  background: url('/assets/squad-image.png') center / contain no-repeat;
   pointer-events: none;
   animation: fadeIn 0.8s ease both;
 }
