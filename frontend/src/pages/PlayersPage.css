@@ -309,7 +309,6 @@
 
 .filter-tab:hover {
   background: rgba(255,255,255,0.08);
-  transform: translateY(-1px);
 }
 
 .filter-tab:hover .filter-tab-icon {
@@ -319,7 +318,6 @@
 .filter-tab:hover {
   color: var(--tab-color);
   border-color: var(--tab-color);
-  box-shadow: 0 0 12px rgba(30, 93, 219, 0.15);
 }
 
 .filter-tab-icon {
@@ -333,7 +331,6 @@
   border-color: var(--tab-color);
   color: var(--tab-color);
   background: rgba(30, 93, 219, 0.1);
-  box-shadow: 0 0 12px rgba(30, 93, 219, 0.15);
 }
 
 /* States */
@@ -694,8 +691,8 @@
 
 .pagination-arrow {
   background: transparent;
-  border: 2px solid #2dd4a0;
-  color: #2dd4a0;
+  border: 2px solid var(--bluelock-primary);
+  color: var(--bluelock-primary);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -703,12 +700,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease;
 }
 
 .pagination-arrow:hover:not(:disabled) {
-  background: rgba(45, 212, 160, 0.1);
-  box-shadow: 0 0 12px rgba(45, 212, 160, 0.3);
+  background: rgba(30, 93, 219, 0.15);
 }
 
 .pagination-arrow:disabled {
@@ -730,7 +726,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease;
 }
 
 .pagination-page:hover {
@@ -740,7 +736,7 @@
 
 .pagination-page.active {
   background: #333;
-  color: #2dd4a0;
+  color: var(--bluelock-primary);
   font-weight: 800;
 }
 
