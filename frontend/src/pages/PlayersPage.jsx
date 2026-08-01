@@ -8,8 +8,6 @@ import './PlayersPage.css';
 const SORT_TABS = [
   { id: 'ovr_desc', label: 'OVR ↓', color: '#ff6b35' },
   { id: 'ovr_asc', label: 'OVR ↑', color: '#32d583' },
-  { id: 'name_asc', label: 'A-Z', color: '#a855f7' },
-  { id: 'name_desc', label: 'Z-A', color: '#4f8ef7' },
 ];
 
 const MAX_PROMO_CARDS = 5;
@@ -30,8 +28,6 @@ export default function PlayersPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     position: '',
-    minOvr: '',
-    maxOvr: '',
     promo: '',
     nation: '',
     club: '',
@@ -79,8 +75,6 @@ export default function PlayersPage() {
       const posMatch = p.position === filters.position || p.secondaryPositions?.includes(filters.position);
       if (!posMatch) return false;
     }
-    if (filters.minOvr && p.overall < Number(filters.minOvr)) return false;
-    if (filters.maxOvr && p.overall > Number(filters.maxOvr)) return false;
     if (filters.promo && p.promo !== filters.promo) return false;
     if (filters.nation && p.nation?.name !== filters.nation) return false;
     if (filters.club && p.club?.name !== filters.club) return false;
@@ -88,8 +82,6 @@ export default function PlayersPage() {
   }).sort((a, b) => {
     if (sortBy === 'ovr_desc') return (b.overall || 0) - (a.overall || 0);
     if (sortBy === 'ovr_asc') return (a.overall || 0) - (b.overall || 0);
-    if (sortBy === 'name_asc') return (a.name || '').localeCompare(b.name || '');
-    if (sortBy === 'name_desc') return (b.name || '').localeCompare(a.name || '');
     return 0;
   });
 
@@ -116,11 +108,11 @@ export default function PlayersPage() {
 
   const clearFilters = () => {
     setSearch('');
-    setFilters({ position: '', minOvr: '', maxOvr: '', promo: '', nation: '', club: '' });
+    setFilters({ position: '', promo: '', nation: '', club: '' });
     setCurrentPage(1);
   };
 
-  const hasActiveFilters = search || filters.position || filters.minOvr || filters.maxOvr || filters.promo || filters.nation || filters.club;
+  const hasActiveFilters = search || filters.position || filters.promo || filters.nation || filters.club;
 
   const stats = {
     total: players.length,
@@ -203,10 +195,6 @@ export default function PlayersPage() {
         <div className="catalog-title-area">
           <h1 className="catalog-title">Catálogo</h1>
           <p className="catalog-subtitle">Explora todos los jugadores disponibles</p>
-        </div>
-        <div className="catalog-stats-row">
-          <span className="catalog-stat-pill">{stats.total} cartas</span>
-          <span className="catalog-stat-pill">{stats.promos} promos</span>
         </div>
       </div>
 
@@ -305,14 +293,6 @@ export default function PlayersPage() {
             </select>
           </div>
           <div className="filter-group">
-            <label className="filter-label">OVR Min</label>
-            <input type="number" min="0" max="99" placeholder="0" value={filters.minOvr} onChange={(e) => handleFilterChange('minOvr', e.target.value)} className="filter-input" />
-          </div>
-          <div className="filter-group">
-            <label className="filter-label">OVR Max</label>
-            <input type="number" min="0" max="99" placeholder="99" value={filters.maxOvr} onChange={(e) => handleFilterChange('maxOvr', e.target.value)} className="filter-input" />
-          </div>
-          <div className="filter-group">
             <label className="filter-label">Promo</label>
             <select value={filters.promo} onChange={(e) => handleFilterChange('promo', e.target.value)} className="filter-select">
               <option value="">Todas</option>
@@ -344,8 +324,6 @@ export default function PlayersPage() {
           <span className="results-count">{filteredPlayers.length} resultados</span>
           {search && <span className="filter-tag" onClick={() => setSearch('')}>"{search}" ✕</span>}
           {filters.position && <span className="filter-tag" onClick={() => handleFilterChange('position', '')}>{filters.position} ✕</span>}
-          {filters.minOvr && <span className="filter-tag" onClick={() => handleFilterChange('minOvr', '')}>Min {filters.minOvr} ✕</span>}
-          {filters.maxOvr && <span className="filter-tag" onClick={() => handleFilterChange('maxOvr', '')}>Max {filters.maxOvr} ✕</span>}
           {filters.promo && <span className="filter-tag" onClick={() => handleFilterChange('promo', '')}>{filters.promo} ✕</span>}
           {filters.nation && <span className="filter-tag" onClick={() => handleFilterChange('nation', '')}>{filters.nation} ✕</span>}
           {filters.club && <span className="filter-tag" onClick={() => handleFilterChange('club', '')}>{filters.club} ✕</span>}
