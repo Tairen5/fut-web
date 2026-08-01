@@ -44,7 +44,6 @@
   position: relative;
   width: calc(100vw - 200px);
   margin-left: calc(-1 * ((100vw - 200px - 100%) / 2 + 2rem));
-  margin-right: calc(-1 * ((100vw - 200px - 100%) / 2 + 2rem));
   padding: 3rem 4rem 2.5rem;
   overflow: hidden;
 }
