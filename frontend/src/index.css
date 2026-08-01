@@ -97,6 +97,12 @@
   --bluelock-dark:     #0f2e6e;
   --bluelock-aura:     #ff003c;
 
+  /* Accent palette */
+  --accent-gold:       #d4a843;
+  --accent-emerald:    #32d583;
+  --accent-purple:     #a855f7;
+  --accent-cyan:       #22d3ee;
+
   --green-fut:     #1e5ddb;
   --blue-fut:      #0f4c81;
 
@@ -143,14 +149,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(30, 93, 219, 0.06) 0%, transparent 70%),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 40px,
-      rgba(30, 93, 219, 0.015) 40px,
-      rgba(30, 93, 219, 0.015) 41px
-    );
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(30, 93, 219, 0.06) 0%, transparent 70%);
   background-attachment: fixed;
 }
 
