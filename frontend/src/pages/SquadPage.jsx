@@ -329,7 +329,6 @@ export default function SquadPage() {
         {/* Center */}
         <div className="squad-center">
           <div className="squad-top">
-            <h1 className="squad-name">{activeSquad?.name || 'Squad'}</h1>
             <div className="squad-top-tabs">
               {squads.map((s) => (
                 <button key={s._id} className={`squad-tab ${activeSquad?._id === s._id ? 'active' : ''}`} onClick={() => activateSquad(s._id)}>
