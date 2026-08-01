@@ -6,11 +6,11 @@ import PlayerCard from '../components/game/PlayerCard';
 import './StorePage.css';
 
 const PACK_COLORS = {
-  Bronze: { accent: '#cd7f32', bg: 'linear-gradient(180deg, #1a1410 0%, #2a1c12 50%, #1a1410 100%)', border: '#cd7f32' },
-  Silver: { accent: '#b0b8c4', bg: 'linear-gradient(180deg, #14161a 0%, #1e2228 50%, #14161a 100%)', border: '#b0b8c4' },
-  Gold: { accent: '#d4a843', bg: 'linear-gradient(180deg, #1a1810 0%, #2a2412 50%, #1a1810 100%)', border: '#d4a843' },
-  Premium: { accent: '#a855f7', bg: 'linear-gradient(180deg, #18101e 0%, #22142e 50%, #18101e 100%)', border: '#a855f7' },
-  Ultimate: { accent: '#1e90ff', bg: 'linear-gradient(180deg, #10141e 0%, #14202e 50%, #10141e 100%)', border: '#1e90ff' },
+  Bronze: { accent: '#cd7f32', bg: 'linear-gradient(180deg, #1a1410 0%, #2a1c12 50%, #1a1410 100%)' },
+  Silver: { accent: '#b0b8c4', bg: 'linear-gradient(180deg, #14161a 0%, #1e2228 50%, #14161a 100%)' },
+  Gold: { accent: '#d4a843', bg: 'linear-gradient(180deg, #1a1810 0%, #2a2412 50%, #1a1810 100%)' },
+  Premium: { accent: '#a855f7', bg: 'linear-gradient(180deg, #18101e 0%, #22142e 50%, #18101e 100%)' },
+  Ultimate: { accent: '#1e90ff', bg: 'linear-gradient(180deg, #10141e 0%, #14202e 50%, #10141e 100%)' },
 };
 
 const getPackStyle = (name) => {
@@ -112,43 +112,91 @@ const StorePage = () => {
     return <div className="store-loading"><div className="spinner" /></div>;
   }
 
-  const featured = packs.find((p) => p.price >= 5000) || packs[0];
-
   return (
     <div className="store-page">
+      {/* Hero Banner */}
       <div className="store-hero">
         <div className="store-hero-content">
+          <p className="store-hero-subtitle">Get yours now</p>
           <h2 className="store-hero-title">Free Pack</h2>
-          <p className="store-hero-desc">Get a free pack every minute</p>
+          <p className="store-hero-desc">A free pack every minute!</p>
           {claimTimeLeft > 0 ? (
-            <div className="store-hero-timer">
-              <span>Available in {formatTime(claimTimeLeft)}</span>
+            <div className="store-hero-timer-row">
+              <span className="store-hero-timer-label">Next pack:</span>
+              <div className="store-hero-timer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {formatTime(claimTimeLeft)}
+              </div>
             </div>
           ) : (
             <button className="store-hero-btn" onClick={handleClaim}>
-              CLAIM NOW <span>&rsaquo;</span>
+              CLAIM NOW
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
           )}
         </div>
         <div className="store-hero-visual">
-          <div className="store-hero-glow" />
-          <div className="store-hero-pack-stack">
-            <div className="store-hero-pack-card" />
-            <div className="store-hero-pack-card store-hero-pack-card--top" />
+          <div className="store-hero-pack-visual">
+            <div className="store-hero-pack-glow" />
+            <div className="store-hero-pack-card" style={{
+              position: 'absolute',
+              bottom: '10px',
+              right: '10px',
+              width: '140px',
+              height: '190px',
+              borderRadius: '8px',
+              background: 'linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+              border: '1px solid rgba(30, 93, 219, 0.3)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              transform: 'rotate(-6deg)',
+              zIndex: 1
+            }} />
+            <div className="store-hero-pack-card" style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              width: '140px',
+              height: '190px',
+              borderRadius: '8px',
+              background: 'linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+              border: '1px solid rgba(30, 93, 219, 0.4)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+              zIndex: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                border: '2px solid rgba(30, 93, 219, 0.5)',
+                borderRadius: '50%'
+              }} />
+            </div>
           </div>
         </div>
         <div className="store-hero-blue-lock-watermark">BLUE<br/>LOCK</div>
       </div>
 
+      {/* Tabs */}
       <div className="store-tabs">
-        <button className="store-tab active">Packs</button>
+        <button className="store-tab active">Featured</button>
+        <button className="store-tab">Packs</button>
         <button className="store-tab">Items</button>
         <button className="store-tab">Bundles</button>
         <button className="store-tab">Stadium</button>
         <button className="store-tab">Customization</button>
       </div>
 
+      {/* Packs Section */}
       <section className="store-packs-section">
+        <div className="store-packs-header">
+          <h3 className="store-packs-title">Packs</h3>
+          <button className="store-packs-view-all">
+            View All Packs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
         <div className="store-packs-grid">
           {packs.map((pack) => {
             const style = getPackStyle(pack.name);
@@ -160,13 +208,13 @@ const StorePage = () => {
               <div
                 key={pack._id}
                 className={`store-pack-card ${!user || user.currency < pack.price ? 'store-pack-card--disabled' : ''}`}
-                style={{ '--pack-accent': style.accent, borderColor: style.border }}
+                style={{ '--pack-accent': style.accent, borderColor: style.accent }}
                 onClick={() => handleBuyPack(pack._id)}
                 role="button"
                 tabIndex={0}
               >
                 <div className="store-pack-visual" style={{ background: style.bg }}>
-                  <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}33 0%, transparent 70%)` }} />
+                  <div className="store-pack-glow" style={{ background: `radial-gradient(circle, ${style.accent}22 0%, transparent 70%)` }} />
                   {pack.image ? (
                     <div className="store-pack-image">
                       <img
@@ -220,6 +268,7 @@ const StorePage = () => {
         </div>
       </section>
 
+      {/* Highlight Modal */}
       {highlightPack && (
         <div className="store-highlight-overlay" onClick={() => setHighlightPack(null)}>
           <div className="store-highlight-modal" onClick={(e) => e.stopPropagation()}>
@@ -238,6 +287,7 @@ const StorePage = () => {
         </div>
       )}
 
+      {/* Pack Opening Overlay */}
       {showOpening && (
         <div className="pack-opening-overlay" onClick={nextCard}>
           <div className="pack-opening-content">
