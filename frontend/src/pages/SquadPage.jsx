@@ -318,12 +318,6 @@ export default function SquadPage() {
 
   return (
     <div className="squad-page">
-      <div className="squad-aurora">
-        <div className="aurora-blob aurora-blob-1" />
-        <div className="aurora-blob aurora-blob-2" />
-        <div className="aurora-blob aurora-blob-3" />
-        <div className="aurora-blob aurora-blob-4" />
-      </div>
       <div className="squad-main">
         {/* Center */}
         <div className="squad-center">
