@@ -410,6 +410,33 @@ export default function SquadPage() {
             <button className="sidebar-menu-item">Copy</button>
             <button className="sidebar-menu-item danger">Clear Squad</button>
           </div>
+
+          <div className="sidebar-bench">
+            <span className="sidebar-bench-title">Suplentes</span>
+            <div className="sidebar-bench-grid">
+              {Array.from({ length: 7 }).map((_, i) => {
+                const player = getPlayerAtBench(i);
+                return (
+                  <div
+                    key={i}
+                    className="sub-card"
+                    onClick={() => { setSelectedBenchSlot(i); setModalFilters((prev) => ({ ...prev, position: '' })); }}
+                    draggable={!!player}
+                    onDragStart={handleDragStart('bench', i)}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={() => handleDrop('bench', i)}
+                  >
+                    {player ? (
+                      <img src={getImageUrl(player.image, 'player-cards')} alt="" className="sub-card-img" />
+                    ) : (
+                      <img src="/assets/player-empty.png" alt="" className="sub-card-img sub-card-img-empty" />
+                    )}
+                    <span className="sub-card-label">SUB {i + 1}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
