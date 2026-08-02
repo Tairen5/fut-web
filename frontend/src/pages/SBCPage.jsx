@@ -117,7 +117,7 @@ function SBCDetailPage({ id, onBack }) {
   const timeLeft = formatTimeLeft(sbc.expiresAt);
 
   return (
-    <div className="sbc-page">
+    <div className="sbc-page sbc-detail-page">
       <button className="sbc-back-btn" onClick={onBack}>
         ← Back
       </button>
