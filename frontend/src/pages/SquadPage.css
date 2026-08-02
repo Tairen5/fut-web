@@ -230,7 +230,7 @@
 
 .squad-subs-btn {
   position: absolute;
-  bottom: var(--space-4);
+  top: var(--space-4);
   left: var(--space-4);
   display: flex;
   align-items: center;
