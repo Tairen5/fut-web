@@ -99,10 +99,6 @@ export default function Navbar() {
   return (
     <nav className="sidebar">
       <div className="sidebar-top">
-        <NavLink to="/players" className="sidebar-brand">
-          <img src="/assets/icon.png" alt="FC" className="sidebar-brand-icon" />
-        </NavLink>
-
         <div className="sidebar-nav">
           {NAV_ITEMS.map((item) => (
             <NavLink
