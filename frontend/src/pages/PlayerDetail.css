@@ -1,8 +1,18 @@
 .detail-page {
   max-width: 1400px;
+  height: 100vh;
+  overflow: hidden;
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 0 2rem 2rem;
   animation: fadeIn 0.3s ease;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.detail-page *,
+.detail-page *::before,
+.detail-page *::after {
+  overscroll-behavior: contain;
 }
 
 @keyframes fadeIn {
