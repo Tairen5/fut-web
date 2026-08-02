@@ -99,8 +99,8 @@
 }
 
 .sbc-card-image {
-  width: 110px;
-  height: 150px;
+  width: 150px;
+  height: 200px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -112,7 +112,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(30, 93, 219, 0.3));
 }
 
 .sbc-card-image-placeholder {
