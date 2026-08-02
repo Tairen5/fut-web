@@ -183,34 +183,41 @@
 .sbc-tag {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.sbc-tag-icon {
-  font-size: 0.7rem;
+.sbc-tag svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 .sbc-tag-nonrepeatable {
-  background: rgba(255, 193, 7, 0.1);
-  color: #ffc107;
-  border: 1px solid rgba(255, 193, 7, 0.2);
+  color: rgba(255, 193, 7, 0.7);
+}
+
+.sbc-tag-nonrepeatable svg {
+  stroke: rgba(255, 193, 7, 0.7);
 }
 
 .sbc-tag-repeatable {
-  background: rgba(76, 175, 80, 0.1);
-  color: #4caf50;
-  border: 1px solid rgba(76, 175, 80, 0.2);
+  color: rgba(76, 175, 80, 0.7);
+}
+
+.sbc-tag-repeatable svg {
+  stroke: rgba(76, 175, 80, 0.7);
 }
 
 .sbc-tag-expiry {
-  background: rgba(255, 152, 0, 0.1);
-  color: #ff9800;
-  border: 1px solid rgba(255, 152, 0, 0.2);
+  color: rgba(255, 152, 0, 0.7);
+}
+
+.sbc-tag-expiry svg {
+  stroke: rgba(255, 152, 0, 0.7);
 }
 
 @media (max-width: 768px) {

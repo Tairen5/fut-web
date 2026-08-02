@@ -151,17 +151,30 @@ function SBCDetailPage({ id, onBack }) {
       <div className="sbc-detail-tags">
         {!sbc.repeatable && (
           <span className="sbc-tag sbc-tag-nonrepeatable">
-            <span className="sbc-tag-icon">🔒</span> Non-Repeatable
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Non-Repeatable
           </span>
         )}
         {sbc.repeatable && (
           <span className="sbc-tag sbc-tag-repeatable">
-            <span className="sbc-tag-icon">🔄</span> Repeatable
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Repeatable
           </span>
         )}
         {timeLeft && (
           <span className="sbc-tag sbc-tag-expiry">
-            <span className="sbc-tag-icon">⏱</span> Expires In: {timeLeft}
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires In: {timeLeft}
           </span>
         )}
       </div>
@@ -234,17 +247,30 @@ function SBCGroupCard({ sbc, onClick }) {
       <div className="sbc-card-tags">
         {!sbc.repeatable && (
           <span className="sbc-tag sbc-tag-nonrepeatable">
-            <span className="sbc-tag-icon">🔒</span> Non-Repeatable
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Non-Repeatable
           </span>
         )}
         {sbc.repeatable && (
           <span className="sbc-tag sbc-tag-repeatable">
-            <span className="sbc-tag-icon">🔄</span> Repeatable
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Repeatable
           </span>
         )}
         {timeLeft && (
           <span className="sbc-tag sbc-tag-expiry">
-            <span className="sbc-tag-icon">⏱</span> Expires In: {timeLeft}
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires In: {timeLeft}
           </span>
         )}
       </div>
