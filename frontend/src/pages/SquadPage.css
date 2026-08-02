@@ -4,6 +4,14 @@
   overflow: hidden;
   background: var(--bg-base);
   position: relative;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.squad-page *,
+.squad-page *::before,
+.squad-page *::after {
+  overscroll-behavior: contain;
 }
 
 .squad-aurora {
@@ -974,7 +982,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .squad-main { grid-template-columns: 1fr; }
-  .squad-page { height: auto; overflow: auto; }
+  .squad-page { height: 100vh; overflow: hidden; }
   .squad-center { height: auto; }
   .squad-sidebar {
     flex-direction: row;
