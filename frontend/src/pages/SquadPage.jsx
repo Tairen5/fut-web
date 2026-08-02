@@ -397,7 +397,7 @@ export default function SquadPage() {
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Right Sidebar */}
         <div className="squad-sidebar">
