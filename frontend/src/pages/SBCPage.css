@@ -1,0 +1,221 @@
+.sbc-page {
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sbc-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sbc-search {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sbc-search:focus {
+  border-color: var(--bluelock-primary);
+}
+
+.sbc-search::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.sbc-daily-btn {
+  padding: 0.6rem 2rem;
+  background: rgba(30, 93, 219, 0.2);
+  border: 1px solid rgba(30, 93, 219, 0.4);
+  border-radius: 8px;
+  color: #4a9eff;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sbc-daily-btn:hover {
+  background: rgba(30, 93, 219, 0.3);
+}
+
+.sbc-loading {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 3rem;
+  font-family: var(--font-ui);
+}
+
+.sbc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.sbc-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 3rem;
+  font-family: var(--font-ui);
+}
+
+/* === SBC Card === */
+.sbc-card {
+  background: linear-gradient(135deg, #15191f 0%, #0f1318 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.sbc-card:hover {
+  border-color: rgba(30, 93, 219, 0.3);
+  transform: translateY(-2px);
+}
+
+.sbc-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sbc-card-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(30, 93, 219, 0.1);
+  border: 1px solid rgba(30, 93, 219, 0.25);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a9eff;
+  flex-shrink: 0;
+}
+
+.sbc-card-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.sbc-card-desc {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sbc-card-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sbc-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sbc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1e5ddb, #4a9eff);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.sbc-progress-text {
+  font-family: var(--font-stats);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.sbc-card-rewards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sbc-rewards-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sbc-rewards-value {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sbc-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.sbc-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.sbc-tag-icon {
+  font-size: 0.7rem;
+}
+
+.sbc-tag-nonrepeatable {
+  background: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.sbc-tag-repeatable {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.sbc-tag-expiry {
+  background: rgba(255, 152, 0, 0.1);
+  color: #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .sbc-grid {
+    grid-template-columns: 1fr;
+  }
+}

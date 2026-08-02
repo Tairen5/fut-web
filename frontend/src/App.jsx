@@ -14,6 +14,7 @@ import SquadPage from './pages/SquadPage';
 import MatchHubPage from './pages/MatchHubPage';
 import MatchLivePage from './pages/MatchLivePage';
 import EvolutionPage from './pages/EvolutionPage';
+import SBCPage from './pages/SBCPage';
 import useAuthStore from './store/useAuthStore';
 import AdminRoute from './components/admin/AdminRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -58,6 +59,7 @@ function AnimatedRoutes() {
           <Route path="/matches" element={<MatchHubPage />} />
           <Route path="/matches/live" element={<MatchLivePage />} />
           <Route path="/evolution" element={<EvolutionPage />} />
+          <Route path="/sbc" element={<SBCPage />} />
           <Route path="/promos/:promoName" element={<PromoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/auth/callback" element={<DiscordCallbackPage />} />
