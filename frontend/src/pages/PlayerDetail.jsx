@@ -12,6 +12,7 @@ export default function PlayerDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     const fetchPlayer = async () => {
