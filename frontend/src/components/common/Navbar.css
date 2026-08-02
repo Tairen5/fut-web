@@ -19,11 +19,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  margin: -1.25rem -0.75rem;
-  padding: 1rem 0.75rem 0.75rem;
-  background: rgba(30, 93, 219, 0.06);
-  border-bottom: 1px solid rgba(30, 93, 219, 0.12);
-  box-shadow: 0 4px 16px rgba(30, 93, 219, 0.08);
 }
 
 .sidebar-brand {
