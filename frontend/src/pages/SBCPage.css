@@ -79,25 +79,63 @@
   border-radius: 10px;
   padding: 1.25rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   transition: border-color 0.2s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .sbc-card:hover {
   border-color: rgba(30, 93, 219, 0.3);
 }
 
+.sbc-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.sbc-card-image {
+  width: 110px;
+  height: 150px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.sbc-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(30, 93, 219, 0.3));
+}
+
+.sbc-card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(30, 93, 219, 0.15) 0%, rgba(30, 93, 219, 0.05) 100%);
+  border: 1px solid rgba(30, 93, 219, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(30, 93, 219, 0.4);
+}
+
 .sbc-card-top {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .sbc-card-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: rgba(30, 93, 219, 0.1);
   border: 1px solid rgba(30, 93, 219, 0.25);
   border-radius: 8px;
@@ -109,11 +147,12 @@
 }
 
 .sbc-card-name {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .sbc-card-desc {

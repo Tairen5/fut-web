@@ -219,59 +219,75 @@ function SBCGroupCard({ sbc, onClick }) {
 
   return (
     <div className="sbc-card" onClick={onClick}>
-      <div className="sbc-card-top">
-        <div className="sbc-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
+      <div className="sbc-card-content">
+        <div className="sbc-card-top">
+          <div className="sbc-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 className="sbc-card-name">{sbc.name}</h3>
         </div>
-        <h3 className="sbc-card-name">{sbc.name}</h3>
-      </div>
 
-      <p className="sbc-card-desc">{sbc.description}</p>
+        <p className="sbc-card-desc">{sbc.description}</p>
 
-      <div className="sbc-card-progress">
-        <div className="sbc-progress-bar">
-          <div className="sbc-progress-fill" style={{ width: `${progress}%` }} />
+        <div className="sbc-card-progress">
+          <div className="sbc-progress-bar">
+            <div className="sbc-progress-fill" style={{ width: `${progress}%` }} />
+          </div>
+          <span className="sbc-progress-text">{completedCount}/{totalCount} SBCs</span>
         </div>
-        <span className="sbc-progress-text">{completedCount}/{totalCount} SBCs</span>
+
+        <div className="sbc-card-rewards">
+          <span className="sbc-rewards-label">Group Rewards:</span>
+          <span className="sbc-rewards-value">{sbc.rewardDescription}</span>
+        </div>
+
+        <div className="sbc-card-tags">
+          {!sbc.repeatable && (
+            <span className="sbc-tag sbc-tag-nonrepeatable">
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Non-Repeatable
+            </span>
+          )}
+          {sbc.repeatable && (
+            <span className="sbc-tag sbc-tag-repeatable">
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+              Repeatable
+            </span>
+          )}
+          {timeLeft && (
+            <span className="sbc-tag sbc-tag-expiry">
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Expires In: {timeLeft}
+            </span>
+          )}
+        </div>
       </div>
 
-      <div className="sbc-card-rewards">
-        <span className="sbc-rewards-label">Group Rewards:</span>
-        <span className="sbc-rewards-value">{sbc.rewardDescription}</span>
-      </div>
-
-      <div className="sbc-card-tags">
-        {!sbc.repeatable && (
-          <span className="sbc-tag sbc-tag-nonrepeatable">
-            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      <div className="sbc-card-image">
+        {sbc.rewardCardImage ? (
+          <img src={sbc.rewardCardImage} alt={sbc.name} />
+        ) : (
+          <div className="sbc-card-image-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
             </svg>
-            Non-Repeatable
-          </span>
-        )}
-        {sbc.repeatable && (
-          <span className="sbc-tag sbc-tag-repeatable">
-            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/>
-              <polyline points="1 20 1 14 7 14"/>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-            </svg>
-            Repeatable
-          </span>
-        )}
-        {timeLeft && (
-          <span className="sbc-tag sbc-tag-expiry">
-            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            Expires In: {timeLeft}
-          </span>
+          </div>
         )}
       </div>
     </div>
