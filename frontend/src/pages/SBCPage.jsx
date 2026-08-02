@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import './SBCPage.css';
 
@@ -17,11 +18,21 @@ const formatTimeLeft = (expiresAt) => {
   return `${mins} Mins`;
 };
 
-export default function SBCPage() {
+export default function SBCPage({ detail }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  if (detail && id) {
+    return <SBCDetailPage id={id} onBack={() => navigate('/sbc')} />;
+  }
+
+  return <SBCListPage onOpen={(sbc) => navigate(`/sbc/${sbc._id}`)} />;
+}
+
+function SBCListPage({ onOpen }) {
   const [sbcs, setSbcs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [selectedSbc, setSelectedSbc] = useState(null);
 
   useEffect(() => {
     const fetchSBCs = async () => {
@@ -69,17 +80,120 @@ export default function SBCPage() {
       ) : (
         <div className="sbc-grid">
           {filtered.map((sbc) => (
-            <SBCGroupCard key={sbc._id} sbc={sbc} onClick={() => setSelectedSbc(sbc)} />
+            <SBCGroupCard key={sbc._id} sbc={sbc} onClick={() => onOpen(sbc)} />
           ))}
           {filtered.length === 0 && (
             <div className="sbc-empty">No SBCs found.</div>
           )}
         </div>
       )}
+    </div>
+  );
+}
 
-      {selectedSbc && (
-        <SBCDetailOverlay sbc={selectedSbc} onClose={() => setSelectedSbc(null)} />
-      )}
+function SBCDetailPage({ id, onBack }) {
+  const [sbc, setSbc] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSBC = async () => {
+      try {
+        const res = await api.get(`/sbc/${id}`);
+        setSbc(res.data);
+      } catch (err) {
+        console.error('Error fetching SBC:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSBC();
+  }, [id]);
+
+  if (loading) return <div className="sbc-loading">Loading...</div>;
+  if (!sbc) return <div className="sbc-loading">SBC not found.</div>;
+
+  const completedCount = 0;
+  const totalCount = sbc.challenges?.length || 0;
+  const timeLeft = formatTimeLeft(sbc.expiresAt);
+
+  return (
+    <div className="sbc-page">
+      <button className="sbc-back-btn" onClick={onBack}>
+        ← Back
+      </button>
+
+      <div className="sbc-detail-header">
+        <div className="sbc-detail-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <h2 className="sbc-detail-name">{sbc.name}</h2>
+          <p className="sbc-detail-desc">{sbc.description}</p>
+        </div>
+      </div>
+
+      <div className="sbc-detail-rewards">
+        <span className="sbc-rewards-label">Group Rewards:</span>
+        <span className="sbc-rewards-value">{sbc.rewardDescription}</span>
+      </div>
+
+      <div className="sbc-detail-progress">
+        <div className="sbc-progress-bar">
+          <div className="sbc-progress-fill" style={{ width: `${(completedCount / totalCount) * 100}%` }} />
+        </div>
+        <span className="sbc-progress-text">{completedCount}/{totalCount} SBCs</span>
+      </div>
+
+      <div className="sbc-detail-tags">
+        {!sbc.repeatable && (
+          <span className="sbc-tag sbc-tag-nonrepeatable">
+            <span className="sbc-tag-icon">🔒</span> Non-Repeatable
+          </span>
+        )}
+        {sbc.repeatable && (
+          <span className="sbc-tag sbc-tag-repeatable">
+            <span className="sbc-tag-icon">🔄</span> Repeatable
+          </span>
+        )}
+        {timeLeft && (
+          <span className="sbc-tag sbc-tag-expiry">
+            <span className="sbc-tag-icon">⏱</span> Expires In: {timeLeft}
+          </span>
+        )}
+      </div>
+
+      <div className="sbc-detail-challenges">
+        {sbc.challenges?.map((challenge, i) => (
+          <div key={challenge._id || i} className="sbc-challenge-card">
+            <div className="sbc-challenge-header">
+              <h4 className="sbc-challenge-name">{challenge.name}</h4>
+              <span className="sbc-challenge-reward">{challenge.rewards?.description}</span>
+            </div>
+            {challenge.description && (
+              <p className="sbc-challenge-desc">{challenge.description}</p>
+            )}
+            <div className="sbc-challenge-reqs">
+              {challenge.requirements?.minOverall > 0 && (
+                <span className="sbc-req">Min OVR: {challenge.requirements.minOverall}</span>
+              )}
+              {challenge.requirements?.minLeagues > 0 && (
+                <span className="sbc-req">Min Leagues: {challenge.requirements.minLeagues}</span>
+              )}
+              {challenge.requirements?.minClubs > 0 && (
+                <span className="sbc-req">Min Clubs: {challenge.requirements.minClubs}</span>
+              )}
+              {challenge.requirements?.minNations > 0 && (
+                <span className="sbc-req">Min Nations: {challenge.requirements.minNations}</span>
+              )}
+            </div>
+            <button className="sbc-challenge-btn">Start Challenge</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -133,93 +247,6 @@ function SBCGroupCard({ sbc, onClick }) {
             <span className="sbc-tag-icon">⏱</span> Expires In: {timeLeft}
           </span>
         )}
-      </div>
-    </div>
-  );
-}
-
-function SBCDetailOverlay({ sbc, onClose }) {
-  const completedCount = 0;
-  const totalCount = sbc.challenges?.length || 0;
-  const timeLeft = formatTimeLeft(sbc.expiresAt);
-
-  return (
-    <div className="sbc-overlay" onClick={onClose}>
-      <div className="sbc-detail" onClick={(e) => e.stopPropagation()}>
-        <button className="sbc-detail-close" onClick={onClose}>✕</button>
-
-        <div className="sbc-detail-header">
-          <div className="sbc-detail-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className="sbc-detail-name">{sbc.name}</h2>
-            <p className="sbc-detail-desc">{sbc.description}</p>
-          </div>
-        </div>
-
-        <div className="sbc-detail-rewards">
-          <span className="sbc-rewards-label">Group Rewards:</span>
-          <span className="sbc-rewards-value">{sbc.rewardDescription}</span>
-        </div>
-
-        <div className="sbc-detail-progress">
-          <div className="sbc-progress-bar">
-            <div className="sbc-progress-fill" style={{ width: `${(completedCount / totalCount) * 100}%` }} />
-          </div>
-          <span className="sbc-progress-text">{completedCount}/{totalCount} SBCs</span>
-        </div>
-
-        <div className="sbc-detail-challenges">
-          {sbc.challenges?.map((challenge, i) => (
-            <div key={challenge._id || i} className="sbc-challenge-card">
-              <div className="sbc-challenge-header">
-                <h4 className="sbc-challenge-name">{challenge.name}</h4>
-                <span className="sbc-challenge-reward">{challenge.rewards?.description}</span>
-              </div>
-              {challenge.description && (
-                <p className="sbc-challenge-desc">{challenge.description}</p>
-              )}
-              <div className="sbc-challenge-reqs">
-                {challenge.requirements?.minOverall > 0 && (
-                  <span className="sbc-req">Min OVR: {challenge.requirements.minOverall}</span>
-                )}
-                {challenge.requirements?.minLeagues > 0 && (
-                  <span className="sbc-req">Min Leagues: {challenge.requirements.minLeagues}</span>
-                )}
-                {challenge.requirements?.minClubs > 0 && (
-                  <span className="sbc-req">Min Clubs: {challenge.requirements.minClubs}</span>
-                )}
-                {challenge.requirements?.minNations > 0 && (
-                  <span className="sbc-req">Min Nations: {challenge.requirements.minNations}</span>
-                )}
-              </div>
-              <button className="sbc-challenge-btn">Start Challenge</button>
-            </div>
-          ))}
-        </div>
-
-        <div className="sbc-detail-tags">
-          {!sbc.repeatable && (
-            <span className="sbc-tag sbc-tag-nonrepeatable">
-              <span className="sbc-tag-icon">🔒</span> Non-Repeatable
-            </span>
-          )}
-          {sbc.repeatable && (
-            <span className="sbc-tag sbc-tag-repeatable">
-              <span className="sbc-tag-icon">🔄</span> Repeatable
-            </span>
-          )}
-          {timeLeft && (
-            <span className="sbc-tag sbc-tag-expiry">
-              <span className="sbc-tag-icon">⏱</span> Expires In: {timeLeft}
-            </span>
-          )}
-        </div>
       </div>
     </div>
   );

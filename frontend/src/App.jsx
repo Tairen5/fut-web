@@ -60,6 +60,7 @@ function AnimatedRoutes() {
           <Route path="/matches/live" element={<MatchLivePage />} />
           <Route path="/evolution" element={<EvolutionPage />} />
           <Route path="/sbc" element={<SBCPage />} />
+          <Route path="/sbc/:id" element={<SBCPage detail />} />
           <Route path="/promos/:promoName" element={<PromoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/auth/callback" element={<DiscordCallbackPage />} />
