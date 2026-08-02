@@ -21,8 +21,6 @@ export default function SquadPage() {
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
   const [dragData, setDragData] = useState(null);
   const [modalSearch, setModalSearch] = useState('');
-  const [showSubsPanel, setShowSubsPanel] = useState(false);
-  const [showFormationPanel, setShowFormationPanel] = useState(false);
   const [modalFilters, setModalFilters] = useState({
     position: '',
     minOvr: '',
@@ -363,75 +361,56 @@ export default function SquadPage() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="squad-bottom-bar">
-          <button className="squad-bottom-btn" onClick={() => { setShowSubsPanel(!showSubsPanel); setShowFormationPanel(false); }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Suplentes
+        {/* Right Sidebar */}
+        <div className="squad-sidebar">
+          <div className="sidebar-mini-pitch">
+            <button className="sidebar-arrow" onClick={() => {
+              const idx = FORMATION_LIST.indexOf(activeSquad?.formation || '4-3-3');
+              const prev = idx > 0 ? FORMATION_LIST[idx - 1] : FORMATION_LIST[FORMATION_LIST.length - 1];
+              changeFormation(prev);
+            }}>‹</button>
+            <div className="mini-pitch-field">
+              {formation.positions.map((pos) => {
+                const player = getPlayerAtSlot(pos.index);
+                return (
+                  <div key={pos.index} className={`mini-dot ${player ? 'on' : ''}`} style={{ left: `${pos.x}%`, top: `${pos.y}%` }} />
+                );
+              })}
+            </div>
+            <button className="sidebar-arrow" onClick={() => {
+              const idx = FORMATION_LIST.indexOf(activeSquad?.formation || '4-3-3');
+              const next = idx < FORMATION_LIST.length - 1 ? FORMATION_LIST[idx + 1] : FORMATION_LIST[0];
+              changeFormation(next);
+            }}>›</button>
+          </div>
+
+          <div className="sidebar-dropdown-wrapper">
+            <button className="sidebar-dropdown-btn" onClick={() => setShowDropdown(!showDropdown)}>
+              {activeSquad?.formation || '4-3-3'} <span>▾</span>
+            </button>
+            {showDropdown && (
+              <div className="sidebar-dropdown-menu">
+                {FORMATION_LIST.map((f) => (
+                  <button key={f} className={`sidebar-dropdown-opt ${activeSquad?.formation === f ? 'active' : ''}`} onClick={() => { changeFormation(f); setShowDropdown(false); }}>
+                    {f}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <button className="sidebar-set-active" onClick={() => activateSquad(activeSquad?._id)}>
+            Set Active
           </button>
-          <button className="squad-bottom-btn" onClick={() => { setShowFormationPanel(!showFormationPanel); setShowSubsPanel(false); }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-            {activeSquad?.formation || '4-3-3'}
-          </button>
+
+          <div className="sidebar-menu">
+            <button className="sidebar-menu-item">Tactics <span>›</span></button>
+            <button className="sidebar-menu-item">Use Squad Builder <span>›</span></button>
+            <button className="sidebar-menu-item">Rename</button>
+            <button className="sidebar-menu-item">Copy</button>
+            <button className="sidebar-menu-item danger">Clear Squad</button>
+          </div>
         </div>
-
-        {/* Subs Panel */}
-        {showSubsPanel && (
-          <div className="squad-panel-overlay" onClick={() => setShowSubsPanel(false)}>
-            <div className="squad-panel" onClick={(e) => e.stopPropagation()}>
-              <div className="squad-panel-header">
-                <h3>Suplentes</h3>
-                <button className="squad-panel-close" onClick={() => setShowSubsPanel(false)}>×</button>
-              </div>
-              <div className="squad-panel-body">
-                <div className="squad-panel-bench">
-                  {Array.from({ length: 7 }).map((_, i) => {
-                    const player = getPlayerAtBench(i);
-                    return (
-                      <div
-                        key={i}
-                        className="sub-card"
-                        onClick={() => { setSelectedBenchSlot(i); setShowSubsPanel(false); setModalFilters((prev) => ({ ...prev, position: '' })); }}
-                        draggable={!!player}
-                        onDragStart={handleDragStart('bench', i)}
-                        onDragOver={(e) => e.preventDefault()}
-                        onDrop={() => handleDrop('bench', i)}
-                      >
-                        {player ? (
-                          <img src={getImageUrl(player.image, 'player-cards')} alt="" className="sub-card-img" />
-                        ) : (
-                          <img src="/assets/player-empty.png" alt="" className="sub-card-img sub-card-img-empty" />
-                        )}
-                        <span className="sub-card-label">SUB {i + 1}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Formation Panel */}
-        {showFormationPanel && (
-          <div className="squad-panel-overlay" onClick={() => setShowFormationPanel(false)}>
-            <div className="squad-panel" onClick={(e) => e.stopPropagation()}>
-              <div className="squad-panel-header">
-                <h3>Formación</h3>
-                <button className="squad-panel-close" onClick={() => setShowFormationPanel(false)}>×</button>
-              </div>
-              <div className="squad-panel-body">
-                <div className="squad-panel-formations">
-                  {FORMATION_LIST.map((f) => (
-                    <button key={f} className={`formation-opt ${activeSquad?.formation === f ? 'active' : ''}`} onClick={() => { changeFormation(f); setShowFormationPanel(false); }}>
-                      {f}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {(selectedSlot !== null || selectedBenchSlot !== null) && (
