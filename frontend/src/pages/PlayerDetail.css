@@ -3,10 +3,12 @@
   height: 100vh;
   overflow: hidden;
   margin: 0 auto;
-  padding: 0 2rem 2rem;
+  padding: 0 2rem;
   animation: fadeIn 0.3s ease;
   touch-action: none;
   overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .detail-page *,
@@ -52,6 +54,9 @@
   grid-template-columns: 320px 1fr;
   gap: 2.5rem;
   align-items: start;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Left column */
@@ -60,6 +65,9 @@
   flex-direction: column;
   gap: 0.75rem;
   animation: slideUp 0.4s ease 0.1s both;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 2rem;
 }
 
 .detail-card-image {
@@ -200,6 +208,9 @@
   gap: 1.5rem;
   animation: slideUp 0.4s ease 0.2s both;
   padding-top: 2rem;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 2rem;
 }
 
 .detail-name-block {

@@ -12,6 +12,8 @@ export default function PlayerDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     const fetchPlayer = async () => {
       setLoading(true);
       try {
@@ -25,6 +27,10 @@ export default function PlayerDetail() {
       }
     };
     fetchPlayer();
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
   }, [id]);
 
   const getImageUrl = (img, folder) => {
