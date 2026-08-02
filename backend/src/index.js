@@ -32,6 +32,19 @@ app.get('/', (req, res) => {
   res.send('FUT Web API is running...');
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: Date.now() });
+});
+
+const SELF_URL = process.env.RENDER_EXTERNAL_URL || process.env.SELF_URL;
+if (SELF_URL) {
+  setInterval(async () => {
+    try {
+      await fetch(`${SELF_URL}/health`);
+    } catch {}
+  }, 10 * 60 * 1000);
+}
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
