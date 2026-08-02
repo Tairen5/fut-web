@@ -1,6 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import './Navbar.css';
+
+const PAGE_NAMES = {
+  '/players': 'Players',
+  '/squad': 'Squad',
+  '/collection': 'Collection',
+  '/store': 'Store',
+  '/matches': 'Matches',
+  '/matches/live': 'Match Live',
+  '/evolution': 'Evolution',
+  '/sbc': 'SBC',
+  '/objectives': 'Objectives',
+  '/events': 'Events',
+};
 
 const NAV_ITEMS = [
   {
@@ -95,13 +108,19 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const location = useLocation();
+
+  const pageTitle = PAGE_NAMES[location.pathname] || 'Blue Lock';
 
   return (
     <nav className="sidebar">
       <div className="sidebar-top">
-        <NavLink to="/players" className="sidebar-brand">
-          <img src="/assets/icon.png" alt="FC" className="sidebar-brand-icon" />
-        </NavLink>
+        <div className="sidebar-brand-section">
+          <NavLink to="/players" className="sidebar-brand">
+            <img src="/assets/icon.png" alt="FC" className="sidebar-brand-icon" />
+          </NavLink>
+          <span className="sidebar-page-name">{pageTitle}</span>
+        </div>
 
         <div className="sidebar-nav">
           {NAV_ITEMS.map((item) => (

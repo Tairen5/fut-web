@@ -27,37 +27,6 @@
   text-transform: uppercase;
 }
 
-.top-bar-center {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.top-bar-nav-link {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(232, 234, 240, 0.4);
-  text-decoration: none;
-  padding: 0.4rem 1rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.top-bar-nav-link:hover {
-  color: rgba(232, 234, 240, 0.7);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.top-bar-nav-link.active {
-  color: #fff;
-  background: rgba(30, 93, 219, 0.15);
-}
-
 .top-bar-right {
   display: flex;
   align-items: center;

@@ -19,21 +19,44 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  background: rgba(30, 93, 219, 0.06);
+  margin: -1.25rem -0.75rem;
+  padding: 1.25rem 0.75rem 0.75rem;
+  border-bottom: 1px solid rgba(30, 93, 219, 0.15);
+  box-shadow: 0 2px 12px rgba(30, 93, 219, 0.05);
+}
+
+.sidebar-brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 1.25rem;
   text-decoration: none;
 }
 
 .sidebar-brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
+}
+
+.sidebar-page-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #4a9eff 0%, #1e5ddb 50%, #6bb5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .sidebar-nav {

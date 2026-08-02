@@ -1,14 +1,6 @@
-import { useLocation, Link, NavLink } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import './TopBar.css';
-
-const NAV_LINKS = [
-  { to: '/players', label: 'Home' },
-  { to: '/squad', label: 'Squad' },
-  { to: '/store', label: 'Store' },
-  { to: '/matches', label: 'Matches' },
-  { to: '/collection', label: 'Collection' },
-];
 
 export default function TopBar() {
   const user = useAuthStore((s) => s.user);
@@ -21,18 +13,6 @@ export default function TopBar() {
     <header className="top-bar">
       <div className="top-bar-left">
         <span className="top-bar-site-name">Blue Lock</span>
-      </div>
-
-      <div className="top-bar-center">
-        {NAV_LINKS.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            className={({ isActive }) => `top-bar-nav-link ${isActive ? 'active' : ''}`}
-          >
-            {link.label}
-          </NavLink>
-        ))}
       </div>
 
       <div className="top-bar-right">
