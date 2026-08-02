@@ -12,7 +12,7 @@ export default function TopBar() {
   return (
     <header className="top-bar">
       <div className="top-bar-left">
-        <span className="top-bar-site-name">Blue Lock</span>
+        <img src="/assets/icon.png" alt="FC" className="top-bar-logo" />
       </div>
 
       <div className="top-bar-right">

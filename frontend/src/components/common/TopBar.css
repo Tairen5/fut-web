@@ -19,12 +19,10 @@
   align-items: center;
 }
 
-.top-bar-site-name {
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  color: #ffffff;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.top-bar-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .top-bar-right {
